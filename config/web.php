@@ -40,21 +40,19 @@ $config = [
         ],
         'db' => $db,
         
-        // 'urlManager' => [
-        //     'enablePrettyUrl' => true,
-        //     'showScriptName' => false,
-        //     'enableStrictParsing' => true,  
-        //     // 'suffix' => '.php',
-        //     'rules' => [
-        //         '' => 'site/index',
-                
-        //         '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-        //         '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-        //         '<controller:\w+>/<id:\d+>' => '<controller>/view',
-        //         // 'login' => 'site/login',
-        //         // '<controller:site>/<action:login>' => 'site/login',
-        //     ],
-        // ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            // 'enableStrictParsing' => true,  
+            // 'suffix' => '.php',
+            'rules' => [
+                '' => 'site/index',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<action:\w+>' => 'site/<action>',
+            ],
+        ],
         
     ],
     'params' => $params,
