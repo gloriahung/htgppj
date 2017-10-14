@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -115,12 +116,20 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Displays sign up page.
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionSignup()
     {
-        return $this->render('about');
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('signupFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 }

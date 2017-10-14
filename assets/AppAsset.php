@@ -26,4 +26,9 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+    public function registerAssetFiles($view){
+        $this->css[] = 'css/site.css?'.date('l jS \of F Y h:i:s A');
+        parent::registerAssetFiles($view);
+    }
 }

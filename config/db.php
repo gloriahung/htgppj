@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=id2980356_recipehashtag',
-    'username' => 'id2980356_admin',
-    'password' => '2017@groupproject',
+    'dsn' => 'mysql:host=localhost;dbname=project',
+    'username' => 'dbuser',
+    'password' => 'roiled65]inerT',
     'charset' => 'utf8',
 ];
