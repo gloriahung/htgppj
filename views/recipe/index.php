@@ -11,7 +11,7 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="recipe-photo">
-                <img src="http://placehold.it/260x260" alt="[Recipe Title]" title="[Recipe Title]">
+                <img src="http://placehold.it/200x200" alt="[Recipe Title]" title="[Recipe Title]">
             </div>
         
             <div class="rating">
@@ -43,7 +43,7 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
                       </div>
                       
                     <div class="modal-body">
-                        <p>Tell us your concern about this content so that we can review it to dtermine whether there has been a violation of terms of service. (Abuse of this feature is violation of terms of services.)</p>
+                        <p>Tell us your concern about this content so that we can review it to determine whether there has been a violation of terms of service. (Abuse of this feature is violation of terms of services.)</p>
                         <hr>
                         <form action="/action_page.php">
                             <div class="form-group">
@@ -159,7 +159,7 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
     <hr>
     
     <div class="writecomment" id="rate">
-        <h2>What's your rating</h2>
+        <h2>What's your rating?</h2>
             <div class="media-left">
                 <img src="http://placehold.it/36x36" alt="[commenterName]" title="[commenterName]">
             </div>

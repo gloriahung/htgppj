@@ -2,12 +2,12 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Post a Recipe - BornToCook';
+$this->title = 'Write a new Recipe - BornToCook';
 ?>
 <div class="container-fluid" style='width:80%'>
   <h1>Posting a new recipe</h1>
-  
   <form action="/action_page.php">
+
     <div class="row">
     
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -53,6 +53,5 @@ $this->title = 'Post a Recipe - BornToCook';
         
     </div>
   </form>
-  
   
 </div>

@@ -5,6 +5,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+
 class RecipeController extends Controller
 {
     /**
@@ -56,5 +57,11 @@ class RecipeController extends Controller
     {
         return $this->render('index');
     }
+    
+    public function actionPostform(){
+        return $this->render('postform');
+    }
+
+
     
 }
