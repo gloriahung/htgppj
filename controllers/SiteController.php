@@ -132,4 +132,17 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionForgetpassword()
+    {
+        $model = new ForgetpasswordForm();
+        if ($model->load(Yii::$app->request->post()) && $model->forgetpassword(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('forgetpassword', [
+            'model' => $model,
+        ]);
+    }
 }
