@@ -77,12 +77,11 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
     
         <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8">
             <div class="hashtag">
-                <ul>
-                    <li style='display:inline'><a href="#">chicken</a></li>
-                    <li style='display:inline'><a href="#">pork</a></li>
-                    <li style='display:inline'><a href="#">beef</a></li>
-                    <li style='display:inline'><a href="#">rice</a></li>
-                </ul>
+                    <span class="label label-warning">chicken</span>
+                    <span class="label label-warning">pork</span>
+                    <span class="label label-warning">beef</span>
+                    <span class="label label-warning">rice</span>
+                
             </div>
             
             <div class="description">
@@ -94,10 +93,10 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
                     <div class="ingredient">
                         <h2>Ingredient</h2>
                         <ul type="bullet">
-                            <li><a href="#">chicken</a></li>
-                            <li><a href="#">pork</a></li>
-                            <li><a href="#">beef</a></li>
-                            <li><a href="#">rice</a></li>
+                            <li>chicken</li>
+                            <li>pork</li>
+                            <li>beef</li>
+                            <li>rice</li>
                         </ul>
                     </div>
                 </div>  
@@ -105,11 +104,11 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
                     <div class="direction">
                         <h2>Directions</h2>
                         <ol type="number" style='word-wrap: break-word'>
-                            <li><a href="#">AAAAAA</a></li>
-                            <li><a href="#">BBBBBBBBBBB</a></li>
-                            <li><a href="#">CCCCCCCCCCCCCCC</a></li>
-                            <li><a href="#">DDDDDDDDDDDDDDDDDDDDDD</a></li>
-                            <li><a href="#">EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</a></li>
+                            <li>AAAAAA</li>
+                            <li>BBBBBBBBBBB</li>
+                            <li>CCCCCCCCCCCCCCC</li>
+                            <li>DDDDDDDDDDDDDDDDDDDDDD</li>
+                            <li>EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</a></li>
                         </ol>
                     </div>      
                 </div>
