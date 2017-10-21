@@ -38,9 +38,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             // ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Sign Up', 'url' => ['/site/signup']],
+            [
+            'label' => 'Sign up',
+            'url' => ['/site/signup'],
+            'visible' => Yii::$app->user->isGuest
+            ],
             // ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
+                // ['label' => 'Sign Up', 'url' => ['/site/signup']],
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
