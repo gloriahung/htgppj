@@ -15,36 +15,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>Please fill out the following fields to login:</p>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+    <div>
+        <div class="col-xs-12">
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'layout' => 'horizontal',
+                'fieldConfig' => [
+                    'template' => "{label}\n<div>{input}</div>\n<div>{error}</div>",
+                    'labelOptions' => ['class' => 'control-label'],
+                ],
+            ]); ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <div class="form-group">
-            <div class="col-lg-3 rememberMe">
-                <input type="hidden" name="LoginForm[rememberMe]" value="0">
-                <input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="">
-                <label for="loginform-rememberme">Remember Me</label>
-            </div>
-            <div class="col-lg-3 forgetpassword">
-                <a href="/site/forgetpassword">Forget Password</a>
-            </div>
+                <div class="form-group">
+                    <div class="col-lg-3 rememberMe">
+                        <input type="hidden" name="LoginForm[rememberMe]" value="0">
+                        <input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="">
+                        <label for="loginform-rememberme">Remember Me</label>
+                    </div>
+                    <div class="col-lg-3 forgetpassword">
+                        <a href="site/forgetpassword">Forget Password</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-11">
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    </div>
+                </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
+    </div>
 
 </div>

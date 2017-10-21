@@ -1,14 +1,14 @@
-<?php
+<?php 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\FoegetpasswordForm */
+/* @var $model app\models\ForgetPasswordForm */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 $this->title = 'Forget Password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-forgetpassword col-md-12">
+<div class="site-forgetpassword col-md-6 col-md-offset-3">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('forgetpasswordFormSubmitted')): ?>
@@ -22,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
     <div class="col-md-12">
-        <p>please enter your username or email address, a new password will be sent to your mail box</p>
+        please enter your username or email address, a new password will be sent to your mail box
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <?php $form = ActiveForm::begin(['id' => 'forgetpassword-form']); ?>
 
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
                     <?= $form->field($model, 'email') ?>
 

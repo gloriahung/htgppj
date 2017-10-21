@@ -6,12 +6,12 @@ use Yii;
 use yii\base\Model;
 
 /**
- * LoginForm is the model behind the login form.
+ * Forget Password Form is the model behind the forget password form.
  *
  * @property User|null $user This property is read-only.
  *
  */
-class ForgetPassowrdForm extends Model
+class ForgetPasswordForm extends Model
 {
     public $username;
     public $email;
@@ -25,51 +25,39 @@ class ForgetPassowrdForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
-            [['username', 'email'], 'required'],
+            //  email or username is required
+            //   email must be a valid email
+            ['username, email', 'my_required'],
+            ['email', 'email'],
             
         ];
     }
 
-    /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
-     *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
-     */
-    public function validatePassword($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
+    //check if username or email have entered
 
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
-            }
-        }
-    }
+    public function my_required($attribute_name, $params)
+{
+        if (empty($this->username)
+            && empty($this->email)
+    ) {
+        $this->addError($attribute,'At least 1 of the field must be filled up properly.');
 
-    /**
-     * Logs in a user using the provided username and password.
-     * @return bool whether the user is logged in successfully
-     */
-    public function login()
-    {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
-        }
         return false;
     }
 
+    return true;
+}
+    
+
     /**
-     * Finds user by [[username]]
+     * Finds user by [[email]]
      *
      * @return User|null
      */
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::findByEmail($this->username);
         }
 
         return $this->_user;

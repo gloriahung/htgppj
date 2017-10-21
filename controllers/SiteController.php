@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
+use app\models\ForgetPasswordForm;
 
 class SiteController extends Controller
 {
@@ -137,6 +138,26 @@ class SiteController extends Controller
     {
         $model = new ForgetpasswordForm();
         if ($model->load(Yii::$app->request->post()) && $model->forgetpassword(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('forgetpassword', [
+            'model' => $model,
+        ]);
+    }
+     /**
+     * Displays forget password page.
+     *
+     * @return string
+     */
+
+    public function actionForgetpassword()
+    {
+        $model = new ForgetPasswordForm();
+
+
+        if ($model->load(Yii::$app->request->post()) ) {
             Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
 
             return $this->refresh();
