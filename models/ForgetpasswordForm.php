@@ -13,10 +13,10 @@ use yii\base\Model;
  */
 class ForgetPasswordForm extends Model
 {
-    public $username;
+    //public $username;
     public $email;
 
-    private $_user = false;
+
 
 
     /**
@@ -27,39 +27,48 @@ class ForgetPasswordForm extends Model
         return [
             //  email or username is required
             //   email must be a valid email
-            ['username, email', 'my_required'],
+            //[['username', 'email'], 'my_required'],
             ['email', 'email'],
+            ['email','required']
             
         ];
     }
 
+    public function forgetpassword()
+    {
+        if($this->validate()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //check if username or email have entered
 
-    public function my_required($attribute_name, $params)
-{
+    /*public function my_required($attribute, $params)
+    {
         if (empty($this->username)
             && empty($this->email)
     ) {
         $this->addError($attribute,'At least 1 of the field must be filled up properly.');
-
-        return false;
+            return false;
+     
     }
-
-    return true;
+            return true;
+  
 }
-    
 
-    /**
-     * Finds user by [[email]]
-     *
-     * @return User|null
-     */
-    public function getUser()
+    public function forgetpassword()
     {
-        if ($this->_user === false) {
-            $this->_user = User::findByEmail($this->username);
+        if($this->validate){
+            return true;
         }
+        return false;
 
-        return $this->_user;
     }
+    */
+
+   
+   
 }

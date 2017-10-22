@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-xs-12">
                 <?php $form = ActiveForm::begin(['id' => 'forgetpassword-form']); ?>
 
-                    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
 
                     <?= $form->field($model, 'email') ?>
 
