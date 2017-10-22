@@ -25,7 +25,6 @@ $this->title = 'Profile';
       <p contenteditable="true">It is a editable text</p> 
       <br>
     </div>
-    
   </div>
   <hr>
   <div class="rows">
@@ -114,5 +113,4 @@ $this->title = 'Profile';
     </div>
   </div>
 
-  
 </div>
