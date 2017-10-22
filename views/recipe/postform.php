@@ -11,20 +11,12 @@ $this->title = 'Write a new Recipe - BornToCook';
     <div class="row">
     
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-<<<<<<< HEAD
-            <div class="add-photo">
-                <label class="icon--picture gray">
-                    <input type="file" name="PhotoUploadFile" id="photoUpload">
-                </label>
-                <span class="note_for_user">(no smaller than 960 X 960)</span>
-=======
             <div class="uploadPhoto">
                 <label class="photoUploader">
                     <input type="file" name="recipePhoto" id="recipePhoto">
                     <span>Take a photo </span>
                     <span>(no smaller than 200 X 200)</span>
                 </label>   
->>>>>>> 2533fd7fc964c6381c3247d47583362610ed39a3
             </div>
         
             <div class="form-group">
@@ -34,12 +26,7 @@ $this->title = 'Write a new Recipe - BornToCook';
             
             <div class="form-group">
                 <label for="description">Description</label>
-<<<<<<< HEAD
                 <textarea rows="5" class="form-control" id="description" placeholder="Write few words about your recipe." name="description"></textarea>
-=======
-                <textarea rows="5" class="form-control" id="description" placeholder="Write few words about your recipe." name="description"
-                ></textarea>
->>>>>>> 2533fd7fc964c6381c3247d47583362610ed39a3
             </div>
         </div>
     
@@ -60,17 +47,11 @@ $this->title = 'Write a new Recipe - BornToCook';
                 <label for="hashtag">Hashtags</label>
                 <input type="text" class="form-control" id="hashtag" placeholder="Press Enter to add a tag." name="hashtag" data-role="tagsinput">
             </div>
-            
-<<<<<<< HEAD
-            <button type="button" class="btn btn-success btn-lg">Post</button>
-            <button type="button" class="btn btn btn-lg">Cancel</button>
-=======
+
             <div class="form-button">
                 <button type="button" class="btn float-right ">Post</button>
                 <button type="button" class="btn float-right ">Cancel</button>
             </div>
-            
->>>>>>> 2533fd7fc964c6381c3247d47583362610ed39a3
         </div>
         
     </div>

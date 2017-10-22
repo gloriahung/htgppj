@@ -63,6 +63,17 @@ class ProfileController extends Controller
         return $this->render('index');
     }
 
+    public function actionFollowsub(){
+        return $this->render('followsub');
+    }
+
+    public function actionFollowing(){
+        return $this->render('following');
+    }
+
+    public function actionSubscription(){
+        return $this->render('subscription');
+    }
 
     
 }

@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Profile';
+$this->title = '[User Name] - cook';
+
 ?>
 <div class="container-fluid text-center"  style='width:80%'>
   <div class="row">
@@ -25,10 +26,11 @@ $this->title = 'Profile';
       <p contenteditable="true">It is a editable text</p> 
       <br>
     </div>
+    
   </div>
   <hr>
-  <div class="rows">
-    <div class = "col-xs-6 col-lg-4">
+  <div id="masonry-rows">
+    <div class = "col-md-6 col-lg-4">
       <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p"alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
@@ -42,7 +44,7 @@ $this->title = 'Profile';
       <h5>Description</h5>
       <p>1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
     </div>
-    <div class = "col-xs-6 col-lg-4">
+    <div class = "col-md-6 col-lg-4">
       <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
@@ -55,7 +57,7 @@ $this->title = 'Profile';
         </div>
       <h5>Description</h5>
       <p>2XXXXXXXXXXXXXXXXXXXXXX</p>
-    </div><div class = "col-xs-6 col-lg-4">
+    </div><div class = "col-md-6 col-lg-4">
       <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
@@ -69,7 +71,7 @@ $this->title = 'Profile';
       <h5>Description</h5>
       <p>3XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
     </div>
-    <div class = "col-xs-6 col-lg-4">
+    <div class = "col-md-6 col-lg-4">
       <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
@@ -83,7 +85,7 @@ $this->title = 'Profile';
       <h5>Description</h5>
       <p>4XXXXX</p>
     </div>
-    <div class = "col-xs-6 col-lg-4">
+    <div class = "col-md-6 col-lg-4">
      <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
@@ -97,11 +99,11 @@ $this->title = 'Profile';
       <h5>Description</h5>
       <p>5XXXXX</p>
     </div>
-    <div class = "col-xs-6 col-lg-4">
+    <div class = "col-md-6 col-lg-4">
      <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
       <br>
       <h4>[Recipe Title]</h4>
-        <data></data>iv class="rating">
+        <div class="rating">
           <span class ="glyphicon glyphicon-star-empty"></span>
           <span class ="glyphicon glyphicon-star-empty"></span>
           <span class ="glyphicon glyphicon-star-empty"></span>
@@ -113,4 +115,5 @@ $this->title = 'Profile';
     </div>
   </div>
 
+  
 </div>
