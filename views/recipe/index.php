@@ -20,7 +20,11 @@ $this->title = '[Recipe Title] - [Author] - BornToCook';
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
+<<<<<<< HEAD
+                ([no of ppl rated])
+=======
                 (12) 
+>>>>>>> 2533fd7fc964c6381c3247d47583362610ed39a3
                 <a href ="#rate">Rate it</a>
             </div>
             

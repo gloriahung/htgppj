@@ -1,7 +1,5 @@
 <?php
-
 namespace app\controllers;
-
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,6 +8,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
+use app\models\ForgetPasswordForm;
 
 class SiteController extends Controller
 {
@@ -38,7 +37,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -54,7 +52,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * Displays homepage.
      *
@@ -64,7 +61,6 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-
     /**
      * Login action.
      *
@@ -75,7 +71,6 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
@@ -84,7 +79,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
      * Logout action.
      *
@@ -93,10 +87,8 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
-
     /**
      * Displays contact page.
      *
@@ -107,14 +99,12 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [
             'model' => $model,
         ]);
     }
-
     /**
      * Displays sign up page.
      *
@@ -125,10 +115,29 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('signupFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+
+    /**
+     * Displays sign up page.
+     *
+     * @return string
+     */
+
+    public function actionForgetpassword()
+    {
+        
+        $model = new ForgetPasswordForm();
+        if ($model->load(Yii::$app->request->post()) && $model->forgetpassword()){
+            Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
+            return $this->refresh();
+        }
+        return $this->render('forgetpassword', [
             'model' => $model,
         ]);
     }
