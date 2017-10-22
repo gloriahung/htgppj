@@ -122,7 +122,6 @@ class SiteController extends Controller
         ]);
     }
 
-
     /**
      * Displays sign up page.
      *
@@ -142,3 +141,4 @@ class SiteController extends Controller
         ]);
     }
 }
+

@@ -22,7 +22,6 @@ body {
 
 .container{
     /*max-width: 970px;*/
-
 }
 
 h1 {
@@ -190,7 +189,7 @@ a.desc:after {
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
-/*login*/
+/*login*/  
 
 .rememberMe{
     display: inline-block;
@@ -203,9 +202,6 @@ a.desc:after {
     text-decoration: underline;
     padding-right: 0;
 }
-
-
-
 
 /*file uploader*/
 .uploadPhoto {
@@ -249,19 +245,8 @@ a.desc:after {
 }
 
 
-
 .Author{
     padding-top: 20px;
 
 }
 
-
-
-
-
-
-
-
-
-
-}
