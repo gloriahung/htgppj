@@ -24,6 +24,11 @@ body {
     /*max-width: 970px;*/
 }
 
+h1 {
+    color: #ff8000;
+    margin-bottom: 20px; 
+}
+
 .footer {
     height: 60px;
     background-color: #ecebeb;
@@ -100,12 +105,6 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
@@ -143,24 +142,18 @@ a.desc:after {
     
 
     .navbar-nav > li > a{
-        /*border: 2px black solid;*/
         padding: 6px 30px;
         background-color: #FFE0B2;
-
         border:solid 2px #41403E;
         align-self:center;
-        /*background:transparent;*/
-        /*padding:1rem 1rem;*/
-        /*margin:0 1rem;*/
         transition:all .5s ease;
         color:#41403E;
         font-size:2rem;
         letter-spacing:1px;
         outline:none;
-        /*box-shadow: 20px 38px 34px -26px hsla(0,0%,0%,.2);*/
         border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
     }
-    .nav > li > a:hover, .nav > li > a:focus {
+    .nav > li > a:hover, .nav > li > a:focus, .nav > li > form > button.logout:focus, .nav > li > form > button.logout:hover {
         text-decoration: none;
         color: #fff;
         background-color: #286090;
@@ -183,14 +176,10 @@ a.desc:after {
 }
 
 .btn{
-    /*border: 2px black solid;*/
     padding: 6px 30px;
     background-color: #FFE0B2;
     border:solid 2px #41403E;
     align-self:center;
-    /*background:transparent;*/
-    /*padding:1rem 1rem;*/
-    /*margin:0 1rem;*/
     transition:all .5s ease;
     color:#41403E;
     font-size:2rem;
@@ -205,13 +194,59 @@ a.desc:after {
 .rememberMe{
     display: inline-block;
     float: left;
+    padding-left: 0;
 }
 
 .forgetpassword{
     float: right;
     text-decoration: underline;
+    padding-right: 0;
 }
 
+/*file uploader*/
+.uploadPhoto {
+    
+    width: 200px;
+    height: 200px;
+    text-align: center ;
+    font-size: 10px;
+    border: 2px dashed #e6e6e6;
+    margin-bottom: 25px;
+    display: block;
 }
 
+
+.photoUploader {
+    overflow: hidden;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    display: block;
+    background-size: 40%;
+    transform: scale(1);
+    opacity: .7;
+    background-image: url(http://images.media-allrecipes.com/ar-images/icons/pic-icon-gray.svg);
+    background-position: top ;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    cursor: inherit;
+    cursor: pointer;
+}
+
+.photoUploader span {
+    display: block;
+    position: relative; top: 160px;
+}
+
+.photoUploader [type=file] {
+    display: none;
+}
+
+
+.Author{
+    padding-top: 20px;
+
+}
 
