@@ -24,9 +24,9 @@ class RecipeForm extends Model
     public function rules()
     {
         return [
-            [['recipePhoto'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
             [['recipePhoto', 'recipeTitle', 'description', 'ingredients', 'direction','hashtags'], 'required'],
             
+            [['recipePhoto'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

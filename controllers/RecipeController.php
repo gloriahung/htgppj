@@ -83,7 +83,29 @@ class RecipeController extends Controller
         }
 
 
+    public function actionComment()
+        {
+            $model = new CommentForm();
+            if ($model->load(Yii::$app->request->post()) && $model->comment(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('CommentFormSubmitted');
+                return $this->refresh();
+            }
+            return $this->render('comment', [
+                'model' => $model,
+            ]);
+        }
 
 
+    public function actionReport()
+        {
+            $model = new ReportForm();
+            if ($model->load(Yii::$app->request->post()) && $model->report(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('ReportFormSubmitted');
+                return $this->refresh();
+            }
+            return $this->render('report', [
+                'model' => $model,
+            ]);
+        }
 
 }
