@@ -5,6 +5,10 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use app\models\CommentForm;
+use app\models\RecipeForm;
+use app\models\ReportForm;
 
 class RecipeController extends Controller
 {
@@ -63,5 +67,23 @@ class RecipeController extends Controller
     }
 
 
-    
+
+
+    public function actionRecipe(){
+
+        $model = new RecipeForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->recipePhoto = UploadedFile::getInstance($model, 'recipePhoto');
+            if ($model->recipe()) {
+                return;
+            }
+        }
+        return $this->render('recipe', ['model' => $model]);
+        }
+
+
+
+
+
 }
