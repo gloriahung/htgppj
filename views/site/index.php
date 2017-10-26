@@ -1,8 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+$this->title = 'Homepage';
 ?>
 <div class="site-index">
 
@@ -16,7 +17,19 @@ $this->title = 'My Yii Application';
 
     <div class="body-content">
 
-        <div class="row">
+        <h1>Recipes</h1>
+        <ul>
+        <?php foreach ($recipes as $recipe): ?>
+            <li>
+                <?= Html::encode("{$recipe->recipeTitle} ({$recipe->description})") ?>:
+                <?= $recipe->rating ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+
+        <?= LinkPager::widget(['pagination' => $pagination]) ?>
+
+        <!-- <div class="row">
             <div class="col-lg-4">
                 <h2>Heading</h2>
 
@@ -47,7 +60,7 @@ $this->title = 'My Yii Application';
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

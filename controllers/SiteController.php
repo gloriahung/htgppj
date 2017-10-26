@@ -9,6 +9,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
 use app\models\ForgetPasswordForm;
+use yii\data\Pagination;
+use app\models\Recipe;
 
 class SiteController extends Controller
 {
@@ -59,7 +61,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Recipe::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count(),
+        ]);
+
+        $recipes = $query->orderBy('recipeId')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('index', [
+            'recipes' => $recipes,
+            'pagination' => $pagination,
+        ]);
+        // return $this->render('index');
     }
     /**
      * Login action.
