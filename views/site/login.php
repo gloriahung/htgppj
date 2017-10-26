@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <label for="loginform-rememberme">Remember Me</label>
                     </div>
                     <div class="col-lg-3 forgetpassword">
-                        <a href="site/forgetpassword">Forget Password</a>
+                        <a href="../site/forgetpassword">Forget Password</a>
                     </div>
                 </div>
 
