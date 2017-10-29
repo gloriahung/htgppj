@@ -11,6 +11,8 @@ use app\models\SignupForm;
 use app\models\ForgetPasswordForm;
 use yii\data\Pagination;
 use app\models\Recipe;
+use app\models\User;
+use app\models\Tag;
 
 class SiteController extends Controller
 {
@@ -61,23 +63,93 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
+            $includingTags = htmlspecialchars($_GET['tagId']);
+        }
+        if(isset($_GET['xTagId'])&& !empty($_GET['xTagId'])){
+            $excludingTags = htmlspecialchars($_GET['xTagId']);
+        }
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $followingUsers = htmlspecialchars($_GET['userId']);
+        }
+
+        $whereArray = array();
+        if(isset($includingTags) ||isset($excludingTags)){
+            if(isset($includingTags)){
+                $includingTagsArray = explode(",", $includingTags);
+                foreach ($includingTagsArray as $includingTagId) {
+                    $whereArray[] = 'FIND_IN_SET("'.$includingTagId.'", tagIds) > 0';
+                }
+            }
+            if(isset($excludingTags)){
+                $whereNotArray = array();
+                $excludingTagsArray = explode(",", $excludingTags);
+                foreach ($excludingTagsArray as $excludingTagId) {
+                    $whereNotArray[] = 'FIND_IN_SET("'.$excludingTagId.'", tagIds) = 0';
+                }
+            }
+        }else if(isset($followingUsers)){
+            $followingUsersArray = explode(",", $followingUsers);
+            foreach ($followingUsersArray as $followingUserId) {
+                $whereArray[] = 'FIND_IN_SET("'.$followingUserId.'", userId) > 0';
+            }
+        }else{
+            $where = '';
+        }
+
+        $where = implode(" OR ",$whereArray);
+
+        if(isset($whereNotArray)){
+            $whereNot = implode(" AND ",$whereNotArray);
+            if(!empty($where))
+                $where .= " AND ".$whereNot;
+            else
+                $where = $whereNot;
+        }
+
+        // get recipe data
         $query = Recipe::find();
 
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 6,
             'totalCount' => $query->count(),
         ]);
 
-        $recipes = $query->orderBy('recipeId')
+        $recipes = $query
+            ->where($where)
+            ->orderBy('recipeId')
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
 
+        $recipesObject = Recipe::findBySql('SELECT * FROM recipe')->where($where)->orderBy('recipeId')->all();
+
+
+        // get user name for each recipe
+        $recipesUserArray = array();
+        foreach ($recipesObject as $key => $recipe) {
+            $user = User::findBySql('SELECT username FROM user WHERE id = '.$recipe->userId)->one();
+            $recipesUserArray[$recipe->recipeId] = $user->username;
+        }
+
+        // get tag name used for each recipe
+        $recipesTagArray = array();
+        foreach ($recipesObject as $key => $recipe) {
+            $tagIdArray = explode(",", $recipe->tagIds);
+            foreach ($tagIdArray as $tagId) {
+                $tag = Tag::findBySql('SELECT tag FROM tag WHERE tagId = '.$tagId)->one();
+                $recipesTagArray[$recipe->recipeId][$tagId] = $tag->tag;
+            }
+        }
+
         return $this->render('index', [
+            'tag' => $recipesTagArray,
+            'user' => $recipesUserArray,
             'recipes' => $recipes,
             'pagination' => $pagination,
         ]);
-        // return $this->render('index');
+
     }
     /**
      * Login action.

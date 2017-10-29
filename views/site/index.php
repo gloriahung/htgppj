@@ -7,60 +7,53 @@ $this->title = 'Homepage';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
     <div class="body-content">
-
-        <h1>Recipes</h1>
-        <ul>
-        <?php foreach ($recipes as $recipe): ?>
-            <li>
-                <?= Html::encode("{$recipe->recipeTitle} ({$recipe->description})") ?>:
-                <?= $recipe->rating ?>
-            </li>
-        <?php endforeach; ?>
-        </ul>
-
-        <?= LinkPager::widget(['pagination' => $pagination]) ?>
-
-        <!-- <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+        <div id="masonry-rows">
+            <div class="row recipe-index">
+            <?php foreach ($recipes as $recipe): 
+                $avgRating = $recipe->rating / $recipe->numOfRate;
+            ?>
+                <div class="col-sm-6 col-md-4 each-recipe">
+                    <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
+                                <br>
+                            </div>    
+                            <div class="panel-footer">
+                            <h4><?= $recipe->recipeTitle ?></h4>
+                                <div class="rating">
+                                    <?php 
+                                    $intRating = floor($avgRating);
+                                    $fraction = $avgRating - $intRating; 
+                                    $remainingRating = 5 - $intRating;
+                                    if($fraction>0) $remainingRating --;
+                                    for ($i=0; $i < $intRating ; $i++): ?>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    <?php endfor;
+                                    if($fraction>=0.5):?>
+                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <?php elseif($fraction != 0): $remainingRating ++; endif;
+                                    for ($i=0; $i < $remainingRating ; $i++): ?>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <?php endfor;?>
+                                </div>
+                                <p class="description">
+                                    <?= $recipe->description ?>
+                                </p>
+                                <p class="info">
+                                    By <a href="profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
+                                    <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
+                                        <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
+                                    <?php endforeach;?>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div> -->
-
+        </div>
     </div>
+    <?= LinkPager::widget(['pagination' => $pagination]) ?>
 </div>

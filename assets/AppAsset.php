@@ -18,7 +18,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap-tagsinput.css'
+        'css/bootstrap-tagsinput.css',
+        'css/font-awesome.min.css',
     ];
     public $js = [
         'js/bootstrap-tagsinput.min.js',
