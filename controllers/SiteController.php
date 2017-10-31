@@ -213,7 +213,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays sign up page.
+     * Displays forget password page.
      *
      * @return string
      */
@@ -229,6 +229,23 @@ class SiteController extends Controller
         return $this->render('forgetpassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * fetch json data from Database
+     *
+     * @return string
+     */
+
+    public function actionSearch()
+    {
+        $result = Tag::findBySql('SELECT tagId,tag FROM tag LIMIT 0,10')->all();
+        foreach ($result as $key => $value) {
+            $user_arr[] = $value->tagId;
+            $user_arr2[] = $value->tag;
+        }
+        // print_r($user_arr2);
+        echo json_encode($user_arr2);
     }
 }
 
