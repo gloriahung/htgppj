@@ -33,7 +33,7 @@ AppAsset::register($this);
             <div class="navbar-header navbar-left"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span></button><a class="navbar-brand" href="/dev1/web/">COOK</a>
+                <span class="icon-bar"></span></button><a class="navbar-brand" href="/dev1/web/">BornToCOOK</a>
             </div>
 
             <div class="dropdown">
@@ -97,9 +97,14 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; COOK <?= date('Y') ?></p>
-
-        <p class="pull-right">By AAA</p>
+        <div class ="row">
+            <div class="col-md-1 col-xs-2" > <a href ='http://project.julab.hk/dev1/web/site/aboutus'>About Us</a></div>
+            <div class="col-md-1 col-xs-2" style='white-space:nowrap;'>  <a href ='http://project.julab.hk/dev1/web/site/contact'>Contact Us</a></div>
+            <div class="col-md-1 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/sitemap'>Sitemap</a></div>
+            <div class="col-md-2 col-xs-3"> <a href ='http://project.julab.hk/dev1/web/site/terms'>Terms and Conditions</a></div>
+            <div class="col-md-2 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/privacy'>Privacy Policy</a></div>
+            <div class="col-md-4 col-xs-5">&copy; <?= date('Y') ?> BornToCOOK All right reserved</div>
+            <div class="pull-right">By Infinite</div>
     </div>
 </footer>
 
