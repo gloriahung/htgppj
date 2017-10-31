@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'COOK',
+        'brandLabel' => 'BornToCOOK',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-fixed-top',
@@ -38,16 +38,44 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            
             // ['label' => 'Home', 'url' => ['/site/index']],
             [
             'label' => 'Sign up',
             'url' => ['/site/signup'],
             'visible' => Yii::$app->user->isGuest
             ],
+
             // ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                // ['label' => 'Sign Up', 'url' => ['/site/signup']],
+                //['label' => 'Sign Up', 'url' => ['/site/signup']]
                 ['label' => 'Login', 'url' => ['/site/login']]
+            
+
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            ),
+
+           
+            Yii::$app->user->isGuest ? (
+                //['label' => 'Sign Up', 'url' => ['/site/signup']]
+               [ 'label'=> 'action', 'dropdown'=>[
+                        'items'=> [
+                                ['label'=> 'DropdownA','url'=>'/'],
+                                ['label'=>'DropdownB','url'=>'#'],
+                            ],
+                        ],
+                    ]
+
+            
+
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -58,6 +86,9 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             )
+
+            
+            
         ],
     ]);
     NavBar::end();
@@ -73,9 +104,14 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; COOK <?= date('Y') ?></p>
-
-        <p class="pull-right">By AAA</p>
+        <div class ="row">
+            <div class="col-md-1 col-xs-2" > <a href ='http://project.julab.hk/dev1/web/site/aboutus'>About Us</a></div>
+            <div class="col-md-1 col-xs-2" style='white-space:nowrap;'>  <a href ='http://project.julab.hk/dev1/web/site/contact'>Contact Us</a></div>
+            <div class="col-md-1 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/sitemap'>Sitemap</a></div>
+            <div class="col-md-2 col-xs-3"> <a href ='http://project.julab.hk/dev1/web/site/terms'>Terms and Conditions</a></div>
+            <div class="col-md-2 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/privacy'>Privacy Policy</a></div>
+            <div class="col-md-4 col-xs-5">&copy; <?= date('Y') ?> BornToCOOK All right reserved</div>
+            <div class="pull-right">By Infinite</div>
     </div>
 </footer>
 
