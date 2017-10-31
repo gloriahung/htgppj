@@ -33,10 +33,10 @@ AppAsset::register($this);
             <div class="navbar-header navbar-left"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span></button><a class="navbar-brand" href="/dev1/web/">BornToCOOK</a>
+                <span class="icon-bar"></span></button><a class="navbar-brand" href="http://project.julab.hk/dev1/web/#">BornToCOOK</a>
             </div>
 
-            <div class="dropdown">
+            <div class="dropdown" >
                 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
                 <span class="caret"></span></button>
                 <div class="dropdown-menu panel panel-default">
@@ -66,8 +66,25 @@ AppAsset::register($this);
                 <ul id="w1" class="navbar-nav navbar-right nav">
                     <li><a href="/dev1/web/site/signup">Sign up</a></li>
                     <li class="active"><a href="/dev1/web/site/login">Login</a></li>
+                    <li>
+                        <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Menu<span class="caret"></span></button>
+                        <div class="dropdown-menu" >                                
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'">Home</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+
+                        </div>
+                        </div>
+                    </li>
+
+
                 </ul>
+
+                
             </div>
+
+
+
             <?php else: ?>
             <div id="w0-collapse" class="collapse navbar-collapse">
                 <ul id="w1" class="navbar-nav navbar-right nav">
@@ -80,6 +97,18 @@ AppAsset::register($this);
                         )
                         . Html::endForm()
                         ?>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Menu<span class="caret"></span></button>
+                        <div class="dropdown-menu panel panel-default" >                                
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'" >Home</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/subscribed tag'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/following'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+
+                        </div>
+                        </div>
                     </li>
                 </ul>
             </div>

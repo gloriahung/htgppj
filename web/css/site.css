@@ -76,6 +76,8 @@ h1 {
     font-style: italic;
 }
 
+
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
@@ -200,7 +202,7 @@ a.desc:after {
     margin-top: 3px;
 }
 
-.btn{
+.btn {
     padding: 6px 30px;
     background-color: #FFE0B2;
     border:solid 2px #41403E;
@@ -214,8 +216,29 @@ a.desc:after {
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
+.btn1{
+    width:160px;
+
+    background-color: #FFE0B2;
+    border:solid 2px #41403E;
+
+    align-self:center;
+    transition:all .5s ease;
+    color:#41403E;
+    font-size:2rem;
+    letter-spacing:1px;
+
+
+
+}
+
 .navbar .dropup, .navbar .dropdown{
     display: inline-block;
+}
+
+.dropdown{
+    display:inline-block;
+
 }
 
 /*login*/  
