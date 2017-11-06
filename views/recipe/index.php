@@ -28,7 +28,7 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
                     <span class="glyphicon glyphicon-star"></span>
                 <?php endfor;
                 if($fraction>=0.5):?>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <i class="glyphicon glyphicon-star half" aria-hidden="true"></i>
                 <?php elseif($fraction != 0): $remainingRating ++; endif;
                 for ($i=0; $i < $remainingRating ; $i++): ?>
                     <span class="glyphicon glyphicon-star-empty"></span>
@@ -139,23 +139,17 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
         <div class="media-body">
             <a href="[link of commenter profile]"> <?=$commentUserArray[$value->userId]['username']?> </a>
             <div class="rating">
-                <?php 
-                    $avgRating = $value->rate;
-                    $intRating = floor($avgRating);
-                    $fraction = $avgRating - $intRating; 
-                    $remainingRating = 5 - $intRating;
-
-                    if($fraction>0) $remainingRating --;            
-                        for ($i=0; $i < $intRating ; $i++): ?>
-                            <i class="fa fa-star" aria-hidden="true"></i>                                                
-                        <?php endfor;
-                        if($fraction>=0.5):?>     
-                            <i class="fa fa-star-half-o" aria-hidden="true"></i>  
-
-                    <?php elseif($fraction != 0): $remainingRating ++; endif;
-                        for ($i=0; $i < $remainingRating ; $i++): ?>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <?php endfor;?>  
+                <?php
+                $rating = $value->rating;
+                $remainingRating = 5 - $rating;
+                
+                for ($i=0; $i < $rating ; $i++): ?>
+                    <span class="glyphicon glyphicon-star"></span>
+                <?php endfor;
+                
+                for ($i=0; $i < $remainingRating ; $i++): ?>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                <?php endfor;?>
             </div>
             <?=$value->comment ?>
         </div>
