@@ -246,10 +246,6 @@ a.desc:after {
    
 }
 
-
-
-
-
 /*login*/  
 
 .rememberMe{
@@ -382,9 +378,14 @@ hr {
 }
 
 ._2di5p{
-    height:100%;
     width:100%;
 }
+
+.profilepic img{
+    width:200px;
+    height:200px;
+}
+
 /*following and subscription page css */
 
 .user a{
@@ -403,7 +404,7 @@ hr {
     font-size: 20px;
 }
 
-.img{
+.user img{
     width:55px;
     height:55px;
 }
@@ -442,6 +443,7 @@ hr {
 .recipe-photo img{
     width:100%;
 }
+
 
 .Author img{
     width:36px;
