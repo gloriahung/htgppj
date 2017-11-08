@@ -33,10 +33,10 @@ AppAsset::register($this);
             <div class="navbar-header navbar-left"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span></button><a class="navbar-brand" href="/dev1/web/">COOK</a>
+                <span class="icon-bar"></span></button><a class="navbar-brand" href="http://project.julab.hk/dev1/web/#">BornToCOOK</a>
             </div>
 
-            <div class="dropdown">
+            <div class="dropdown" id="search-dropdown" >
                 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
                 <span class="caret"></span></button>
                 <div class="dropdown-menu panel panel-default">
@@ -66,20 +66,50 @@ AppAsset::register($this);
                 <ul id="w1" class="navbar-nav navbar-right nav">
                     <li><a href="/dev1/web/site/signup">Sign up</a></li>
                     <li class="active"><a href="/dev1/web/site/login">Login</a></li>
+                    <li>
+                        <div class="dropdown">
+                        <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="dropdown2"><i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
+                        <div class="dropdown-menu panel " id="panel1">                                
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'">Home</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+
+                        </div>
+                        </div>
+                    </li>
+
+
                 </ul>
+
+                
             </div>
+
+
+
             <?php else: ?>
-            <div id="w0-collapse" class="collapse navbar-collapse">
+            <div id="w0-collapse" class="collapse navbar-collapse" style = "float:right">
                 <ul id="w1" class="navbar-nav navbar-right nav">
                     <li>
                         <?php echo
                         Html::beginForm(['/site/logout'], 'post')
                         . Html::submitButton(
                             'Logout (' . Yii::$app->user->identity->username . ')',
-                            ['class' => 'btn btn-link logout']
+                            ['class' => 'btn btn-link logout',
+                                'id'=> 'logoutbutton']
                         )
                         . Html::endForm()
                         ?>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                        <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
+                        <div class="dropdown-menu panel" id="panel1" >                                
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'" >Home</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/subscribed tag'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/following'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+
+                        </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -97,9 +127,14 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; COOK <?= date('Y') ?></p>
-
-        <p class="pull-right">By AAA</p>
+        <div class ="row">
+            <div class="col-md-1 col-xs-2" > <a href ='http://project.julab.hk/dev1/web/site/aboutus'>About Us</a></div>
+            <div class="col-md-1 col-xs-3" style='white-space:nowrap;'>  <a href ='http://project.julab.hk/dev1/web/site/contactus'>Contact Us</a></div>
+            <div class="col-md-1 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/sitemap'>Sitemap</a></div>
+            <div class="col-md-2 col-xs-3"> <a href ='http://project.julab.hk/dev1/web/site/terms'>Terms and Conditions</a></div>
+            <div class="col-md-2 col-xs-2"> <a href ='http://project.julab.hk/dev1/web/site/privacy'>Privacy Policy</a></div>
+            <div class="col-md-4 col-xs-5">&copy; <?= date('Y') ?> BornToCOOK All right reserved</div>
+            <div class="pull-right">By Infinite</div>
     </div>
 </footer>
 
@@ -127,9 +162,9 @@ var msnry = new Masonry( container, {
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       prefetch: {
         // url: 'data/countries.json',
-        url: 'site/search',
+        url: 'site/search/',
         filter: function(list) {
-          return $.map(list, function(id,name) {
+          return $.map(list, function(name) {
             return { name: name }; });
         }
       }

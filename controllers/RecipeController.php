@@ -5,6 +5,12 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use app\models\Comment;
+use app\models\User;
+use app\models\Recipe;
+use app\models\Tag;
+
+
 
 class RecipeController extends Controller
 {
@@ -55,7 +61,38 @@ class RecipeController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(isset($_GET['recipeId'])&& !empty($_GET['recipeId'])){
+            $recipeId = htmlspecialchars($_GET['recipeId']);
+        }
+
+        // $comment = Comment::findBySql('SELECT*FROM comment')->where(['recipeId'=>$recipeId])->all();
+        $comment = Comment::findBySql('SELECT * FROM comment WHERE recipeId = '.$recipeId)->all();
+		$recipe = Recipe::findBySql('SELECT* FROM recipe WHERE recipeId= '.$recipeId)->one();
+		$recipeUser = User::findBySql('SELECT* FROM user WHERE id = '.$recipe->userId)->one();
+		// $commentUser = User::findBySql('SELECT*FROM user')->where(['id'=>$comment->userId])->all();
+		$tagIdArray = explode(",", $recipe->tagIds);
+
+		foreach($tagIdArray as $tagId) {
+			$tag = Tag::findBySql('SELECT* FROM tag WHERE tagId ='.$tagId)->one();
+			$recipeTagArray[$tagId] = $tag->tag;
+		}
+
+        foreach($comment as $value) {
+            $user = User::findBySql('SELECT* FROM user WHERE id ='.$value->userId)->one();
+            $commentUserArray[$value->userId]['username'] = $user->username;
+            $commentUserArray[$value->userId]['userIcon'] = $user->userIcon;
+        }
+
+
+		// var_dump($comment);
+		
+        return $this->render('index', [
+            'comment' => $comment,
+            'recipe' => $recipe,
+			'recipeUser' => $recipeUser,
+			'recipeTagArray' => $recipeTagArray,
+            'commentUserArray' => $commentUserArray,
+        ]);
     }
     
     public function actionPostform(){
