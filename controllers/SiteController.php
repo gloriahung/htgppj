@@ -213,7 +213,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays sign up page.
+     * Displays forget password page.
      *
      * @return string
      */
@@ -229,6 +229,48 @@ class SiteController extends Controller
         return $this->render('forgetpassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * fetch json data from Database
+     *
+     * @return string
+     */
+
+    public function actionSearch()
+    {
+        $result = Tag::findBySql('SELECT tagId,tag FROM tag LIMIT 0,10')->all();
+        foreach ($result as $key => $value) {
+            $user_arr[] = $value->tagId;
+            $user_arr2[] = $value->tag;
+        }
+        // print_r($user_arr2);
+        echo json_encode($user_arr2);
+    }
+
+    public function actionAboutus()
+    {
+            return $this->render('aboutus');
+    }
+
+    public function actionContactus()
+    {
+            return $this->render('contactus');
+    }
+
+    public function actionSitemap()
+    {
+            return $this->render('sitemap');
+    }
+
+    public function actionTerms()
+    {
+            return $this->render('terms');
+    }
+
+    public function actionPrivacy()
+    {
+            return $this->render('privacy');
     }
 }
 
