@@ -215,6 +215,10 @@ a.desc:after {
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
 
+.navbar .dropup, .navbar .dropdown{
+    display: inline-block;
+}
+
 /*login*/  
 
 .rememberMe{
@@ -307,9 +311,14 @@ hr {
 }
 
 ._2di5p{
-    height:100%;
     width:100%;
 }
+
+.profilepic img{
+    width:200px;
+    height:200px;
+}
+
 /*following and subscription page css */
 
 .user a{
@@ -328,7 +337,7 @@ hr {
     font-size: 20px;
 }
 
-.img{
+.user img{
     width:55px;
     height:55px;
 }
@@ -358,5 +367,61 @@ hr {
     padding: 10px 0px;
 }
 
+
+/*search bar*/
+#search-included{
+    display: inline-block;
+    padding-top: 5px;
+}
+
+.twitter-typeahead {
+    display:initial !important;
+}
+.bootstrap-tagsinput {
+    line-height: 30px !important;
+    display:block !important;    
+    min-width: 200px;
+}
+.bootstrap-tagsinput .tag {
+    background:#09F;
+    padding:5px;
+    border-radius:4px;
+    font-size: 100%;
+}
+#search-excluded .bootstrap-tagsinput .tag {
+    background:#d83d3d;
+}
+.tt-hint {
+    top:2px !important;
+}
+.tt-input{
+    vertical-align:baseline !important;
+}
+.typeahead {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 300px;
+    font-size:1.5em;
+}
+.tt-menu {
+    width:300px;
+}
+span.twitter-typeahead .tt-suggestion {
+    padding: 10px 20px;
+    border-bottom:#CCC 1px solid;
+    cursor:pointer;
+}
+span.twitter-typeahead .tt-suggestion:last-child {
+    border-bottom:0px;
+}
+.demo-label {
+    font-size:1.5em;
+    color: #686868;
+    font-weight: 500;
+}
+.bgcolor {
+    max-width: 440px;
+}
 
 
