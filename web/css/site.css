@@ -394,7 +394,7 @@ hr {
     font-size: 20px;
 }
 
-.hashtag a{
+.search-dropdown .hashtag a{
     background-color: #5bc0de; 
     color: white; 
     border-radius: .25em;
@@ -408,12 +408,14 @@ hr {
     height:55px;
 }
 
+
+
 @media (max-width: 767px){
     .user a{
         font-size: 15px;
     }
 
-    .hashtag a{
+    .search-dropdown .hashtag a{
         font-size: 15px;
     }
 }
@@ -433,6 +435,23 @@ hr {
     padding: 10px 0px;
 }
 
+/*design for a single recipe */
+.recipe-photo {
+    width:200px;
+}
+.recipe-photo img{
+    width:100%;
+}
+
+.Author img{
+    width:36px;
+    height:36px;
+}
+
+.media-left img{
+    width:36px;
+    height:36px;
+}
 
 /*search bar*/
 #search-included{
@@ -490,4 +509,24 @@ span.twitter-typeahead .tt-suggestion:last-child {
     max-width: 440px;
 }
 
-
+.glyphicon-star {
+  
+  &.half {
+    position: relative;
+    &:before {
+      position: relative;
+      z-index: 9;
+      width: 47%;
+      display: block;
+      overflow: hidden;
+    }
+    &:after {
+      content: '\e006';
+      position: absolute;
+      z-index: 8;
+      color: #bdc3c7;
+      top: 0;
+      left: 0;
+    }
+  }
+}
