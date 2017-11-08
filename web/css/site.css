@@ -76,6 +76,8 @@ h1 {
     font-style: italic;
 }
 
+
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
@@ -200,7 +202,7 @@ a.desc:after {
     margin-top: 3px;
 }
 
-.btn{
+.btn {
     padding: 6px 30px;
     background-color: #FFE0B2;
     border:solid 2px #41403E;
@@ -210,13 +212,43 @@ a.desc:after {
     font-size:2rem;
     letter-spacing:1px;
     outline:none;
-    box-shadow: 5px 6px 19px 3px hsla(0,0%,0%,.2);
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.btn1{
+    width:160px;
+
+    background-color: #FFE0B2;
+    border:solid 2px #41403E;
+
+    align-self:center;
+    transition:all .5s ease;
+    color:#41403E;
+    font-size:2rem;
+    letter-spacing:1px;
+
+
+
 }
 
 .navbar .dropup, .navbar .dropdown{
     display: inline-block;
 }
+
+.dropdown{
+    display:inline-block;
+
+
+}
+
+#panel1{
+    background:transparent;
+   
+}
+
+
+
+
 
 /*login*/  
 
@@ -280,6 +312,46 @@ a.desc:after {
 
 }
 
+#logoutbutton{
+    height:36px;
+    padding-top:1px;
+}
+
+#search-dropdown .dropdown-toggle{
+    margin-top:7px;
+     height:36px;
+     padding-top:2px;
+}
+
+.btn2{
+    padding: 6px 30px;
+    background-color: #FFE0B2;
+    border:solid 2px #41403E;
+    align-self:center;
+    transition:all .5s ease;
+    color:#41403E;
+    font-size:2rem;
+    letter-spacing:1px;
+    outline:none;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    font-size: 21px;
+    padding: 1px 10px;
+}
+
+.btn3{
+    padding: 6px 30px;
+    background-color: #FFE0B2;
+    border:solid 2px #41403E;
+    align-self:center;
+    transition:all .5s ease;
+    color:#41403E;
+    font-size:2rem;
+    letter-spacing:1px;
+    outline:none;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    font-size: 21px;
+    padding: 5px 10px;
+}
 /*Profile*/
 
 #followandscription_font{

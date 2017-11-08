@@ -247,5 +247,30 @@ class SiteController extends Controller
         // print_r($user_arr2);
         echo json_encode($user_arr2);
     }
+
+    public function actionAboutus()
+    {
+            return $this->render('aboutus');
+    }
+
+    public function actionContactus()
+    {
+            return $this->render('contactus');
+    }
+
+    public function actionSitemap()
+    {
+            return $this->render('sitemap');
+    }
+
+    public function actionTerms()
+    {
+            return $this->render('terms');
+    }
+
+    public function actionPrivacy()
+    {
+            return $this->render('privacy');
+    }
 }
 
