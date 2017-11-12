@@ -203,14 +203,18 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail'])) {
+        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail']) /*&& $model->actionEmail()*/) {
             Yii::$app->session->setFlash('signupFormSubmitted');
             return $this->refresh();
         }
+        else{
         return $this->render('signup', [
             'model' => $model,
         ]);
+        }
     }
+
+    
 
     /**
      * Displays forget password page.
@@ -226,10 +230,12 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
             return $this->refresh();
         }
+        else{
         return $this->render('forgetpassword', [
             'model' => $model,
         ]);
     }
+}
 
     /**
      * fetch json data from Database

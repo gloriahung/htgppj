@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     
 
-    <div class="col-md-12">
+    <div class="col-md-12 panel mation" ">
         This is about us page!!!
         </div>
 

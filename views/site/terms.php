@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     
 
-    <div class="col-md-12">
+    <div class="col-md-12 panel panel-mation" >
         <h2>Introduction</h2>
 		<p>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</p>
 		<p>Minors or people below 18 years old are not allowed to use this Website.</p>

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     
 
-    <div class="col-md-12">
+    <div class="col-md-12 panel panel-mation"  >
         <h2>Privacy Policy</h2>
 
 		<p>Born to Cook operates the borntocook.com website, which provides the SERVICE.</p>
