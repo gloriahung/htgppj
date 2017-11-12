@@ -222,9 +222,14 @@ class SiteController extends Controller
     {
         
         $model = new ForgetPasswordForm();
-        if ($model->load(Yii::$app->request->post()) && $model->forgetpassword()){
-            Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post())){
+            if($model->forgetpassword()){
+                Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
+                return $this->refresh();
+            }else{
+                Yii::$app->session->setFlash('emailDoesNotExistsError');
+                return $this->refresh();
+            }
         }
         return $this->render('forgetpassword', [
             'model' => $model,
