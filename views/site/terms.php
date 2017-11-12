@@ -8,12 +8,12 @@ use yii\captcha\Captcha;
 $this->title = 'Terms and Conditions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-terms col-md-10 col-md-offset-1">
+<div class="site-terms col-md-10 col-md-offset-1 panel contentPanel">
     <h1><?= Html::encode($this->title) ?></h1>
 
     
 
-    <div class="col-md-12 panel panel-mation" >
+    <div class="col-md-12" >
         <h2>Introduction</h2>
 		<p>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions.</p>
 		<p>Minors or people below 18 years old are not allowed to use this Website.</p>

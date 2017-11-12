@@ -8,7 +8,7 @@ use yii\captcha\Captcha;
 $this->title = 'Forget Password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-forgetpassword col-md-6 col-md-offset-3">
+<div class="site-forgetpassword col-md-6 col-md-offset-3 panel contentPanel">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('forgetpasswordFormSubmitted')): ?>
