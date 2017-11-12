@@ -64,11 +64,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
-            $includingTags = htmlspecialchars($_GET['tagId']);
+        if(isset($_GET['tag'])&& !empty($_GET['tag'])){
+            $includingTags = htmlspecialchars($_GET['tag']);
         }
-        if(isset($_GET['xTagId'])&& !empty($_GET['xTagId'])){
-            $excludingTags = htmlspecialchars($_GET['xTagId']);
+        if(isset($_GET['xTag'])&& !empty($_GET['xTag'])){
+            $excludingTags = htmlspecialchars($_GET['xTag']);
         }
         if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $followingUsers = htmlspecialchars($_GET['userId']);
@@ -78,15 +78,17 @@ class SiteController extends Controller
         if(isset($includingTags) ||isset($excludingTags)){
             if(isset($includingTags)){
                 $includingTagsArray = explode(",", $includingTags);
-                foreach ($includingTagsArray as $includingTagId) {
-                    $whereArray[] = 'FIND_IN_SET("'.$includingTagId.'", tagIds) > 0';
+                foreach ($includingTagsArray as $includingTagName) {
+                    $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$includingTagName.'"')->one();
+                    $whereArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) > 0';
                 }
             }
             if(isset($excludingTags)){
                 $whereNotArray = array();
                 $excludingTagsArray = explode(",", $excludingTags);
-                foreach ($excludingTagsArray as $excludingTagId) {
-                    $whereNotArray[] = 'FIND_IN_SET("'.$excludingTagId.'", tagIds) = 0';
+                foreach ($excludingTagsArray as $excludingTagName) {
+                    $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$excludingTagName.'"')->one();
+                    $whereNotArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) = 0';
                 }
             }
         }else if(isset($followingUsers)){
