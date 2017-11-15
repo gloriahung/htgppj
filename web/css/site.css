@@ -351,13 +351,15 @@ a.desc:after {
 /*Profile*/
 
 #followandscription_font{
-    font-size: 14px;
+    font-size: 16px;
 }
 #followandscription_font a {
     color :black;
 }
-#followandscription_font a:hover{
-    color:grey;
+
+
+.col-md-7 p{
+    font-size: 16px;
 }
 
 #masonry-rows  [class*='col-'] {

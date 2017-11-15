@@ -4,7 +4,32 @@
 use yii\helpers\Html;
 $this->title = 'Profile - cook';
 
-?>
+?><!-- 
+<script src = "../js/aJaxtesting.js"></script> --><!-- 
+<script src="/dev3/web/assets/a8f6f288/jquery.js"></script> -->
+<script>
+    function fnBookmark(userid,usinguserid){
+
+$.ajax({
+                    url:'follow?userid='+userid+'&usinguserid='+usinguserid,
+                    type:'GET',
+                    dataType:'json',
+                    success:function(data){
+                          if(data == 1)
+                          {
+                                  // $("#afollowbutton").attr("class", "unfollow");
+                                $("#afollowbutton").text("follow");
+                          }
+                          else if(data == 0)
+                          {
+                              // $("#afollowbutton").attr("class", "follow");
+                                $("#afollowbutton").text("unfollow");
+                          }
+                    
+                    }
+        });
+}
+    </script>
 <div class="text-center">
   <div class="row">
     <br><br>
@@ -14,16 +39,27 @@ $this->title = 'Profile - cook';
       </div>
      </div>
   <div class="col-md-7 text-left">
-     <h1><?= $userInfo->username ?></h1>
+     <h1><?= $userInfo->username ?>&nbsp&nbsp 
+            <?php if ($followed == 0): ?>
+              <button type="button" id="afollowbutton" class="follow btn btn-default btn-sm" onClick ="fnBookmark(<?= $userInfo->id ?>,<?= $usinguserId?>)">follow</button> 
+            <?php else: ?>
+              <?php if($followed == 1): ?>
+                   <button type="button" id="afollowbutton" class="unfollow btn btn-default btn-sm" onClick ="fnBookmark(<?= $userInfo->id ?>,<?= $usinguserId?>)">unfollow</button>
+                <?php else: ?>
+                    <a href ="../profile/edit"><img src="../img/profileImg/editbutton.png" class="img-rounded" alt="edit button" title="edit button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a>
+                <?php endif; ?>
+            <?php endif; ?>
+        
+            </h1>
       <div id ="followandscription_font">
         <a href = "../profile/followsub?userId=<?= $userInfo->id ?>">following&nbsp;&nbsp;: <?= $numOfFol ?>&nbsp;&nbsp;subscription  : <?= $numOfSub ?>
         </a>
-        &nbsp&nbsp<button type="button" class="btn btn-default btn-sm">follow</button>
         <br>
         post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $numOfPost ?>
         <br>
       </div>
-      <p contenteditable="true"><?= $userInfo->userIntro ?></p> 
+      <br>
+      <p><?= $userInfo->userIntro ?></p> 
       <br>
     </div>
     
@@ -78,3 +114,5 @@ $this->title = 'Profile - cook';
     </div>
   
 </div>
+
+
