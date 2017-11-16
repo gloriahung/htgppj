@@ -73,9 +73,12 @@ class SiteController extends Controller
         if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $followingUsers = htmlspecialchars($_GET['userId']);
         }
+        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
+            $includingTagIds = htmlspecialchars($_GET['tagId']);
+        }
 
         $whereArray = array();
-        if(isset($includingTags) ||isset($excludingTags)){
+        if(isset($includingTags) ||isset($excludingTags) || isset($includingTagIds)){
             if(isset($includingTags)){
                 $includingTagsArray = explode(",", $includingTags);
                 foreach ($includingTagsArray as $includingTagName) {
@@ -89,6 +92,12 @@ class SiteController extends Controller
                 foreach ($excludingTagsArray as $excludingTagName) {
                     $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$excludingTagName.'"')->one();
                     $whereNotArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) = 0';
+                }
+            }
+            if(isset($includingTagIds)){
+                $includingTagsArray = explode(",", $includingTagIds);
+                foreach ($includingTagsArray as $includingTagId) {
+                    $whereArray[] = 'FIND_IN_SET("'.$includingTagId.'", tagIds) > 0';
                 }
             }
         }else if(isset($followingUsers)){

@@ -141,7 +141,7 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script src="/dev1/web/assets/7529bef6/js/bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
@@ -194,18 +194,6 @@ var msnry = new Masonry( container, {
             source: tags.ttAdapter()
         }
     });
-
-    // jQuery('#tags-input').tagsinput({
-    //     itemValue: 'value',
-    //     itemText: 'text',
-    //     typeahead: {
-    //         displayKey: 'text',
-    //         afterSelect: function(val) { this.$element.val(""); },
-    //         source: function () {
-    //             return jQuery.get("http://project.julab.hk/dev1/web/site/search");
-    //         }
-    //     }
-    // });
 
     function gotosearch(){
         var includingTags = $("#tags-input").val();

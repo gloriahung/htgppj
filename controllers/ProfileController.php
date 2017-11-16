@@ -312,7 +312,7 @@ class ProfileController extends Controller
         $userInfo = User::findBySql('SELECT * FROM user WHERE id ='.$userId)->one();
 
         $numOfFol = 0;
-;
+
         $followingUserIdArray = explode(",", $userInfo->followingUserId);
         foreach ($followingUserIdArray as $followingId) {
                 $numOfFol++;
