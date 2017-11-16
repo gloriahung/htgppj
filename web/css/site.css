@@ -532,3 +532,10 @@ span.twitter-typeahead .tt-suggestion:last-child {
     }
   }
 }
+
+
+.contentPanel{
+    padding: 0px 20px 20px 20px;
+    border: #ffa627 1px solid;
+    box-shadow: 9px 8px 5px rgba(121, 121, 121, 0.11);
+}
