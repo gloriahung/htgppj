@@ -104,9 +104,11 @@ AppAsset::register($this);
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel" id="panel1" >                                
                             <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'" >Home</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/subscribed tag'" >Subscribed tag</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/following'" >Following</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/changepw'" >Change password</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/subscription?userId=<?=\Yii::$app->user->identity->id;?>'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/following?userId=<?=\Yii::$app->user->identity->id;?>'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/site/faq'" >FAQ</button>
 
                         </div>
                         </div>

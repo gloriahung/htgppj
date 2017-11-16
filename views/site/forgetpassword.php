@@ -8,6 +8,7 @@ use yii\captcha\Captcha;
 $this->title = 'Forget Password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="site-forgetpassword col-md-6 col-md-offset-3">
     <div class="panel panel-default contentPanel">
         <div class="panel-body">
