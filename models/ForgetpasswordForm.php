@@ -45,7 +45,7 @@ class ForgetPasswordForm extends Model
 You have just reset your password on Borntocook.\r\n
 Here's your new password.\r\n".$randPw.
 "\r\nYou can now login your account with this new password.\r\n"
-."http://" . $_SERVER['SERVER_NAME']."/dev1/web/site/login\r\n".
+."http://" . $_SERVER['SERVER_NAME']."/web/site/login\r\n".
 "Please reset your password immediately after you have logged in.\r\n
 \r\n
 Best Regards,\r\n

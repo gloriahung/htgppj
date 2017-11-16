@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 
 $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
 ?>
-<script src="..\js\starrating.js"></script>
+
 <div class="container-fluid" style='width:80%'>
   <h1> <?=$recipe->recipeTitle?> </h1>
   

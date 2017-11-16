@@ -15,7 +15,10 @@ $this->title = '[User Name] - cook';
    <div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 
+                if($recipe->numOfRate!=0)
                 $avgRating = $recipe->rating / $recipe->numOfRate;
+                else
+                $avgRating = 0;
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
