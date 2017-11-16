@@ -177,10 +177,6 @@ class ProfileController extends Controller
 
         
 
-
-
-
-
         return $this->render('index', [
             'tag' => $recipesTagArray,
             'userInfo' => $userInfo,
@@ -261,6 +257,7 @@ class ProfileController extends Controller
             'numOfFol'=>$numOfFol
         ]);
     }
+
 
     public function actionFollowsub(){
          if(isset($_GET['userId'])&& !empty($_GET['userId'])){
