@@ -252,13 +252,7 @@ a.desc:after {
    
 }
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> a1c42210107fd3450f3ce7bb3b03c598bc40c7d6
 /*login*/  
 
 .rememberMe{
@@ -364,13 +358,15 @@ a.desc:after {
 /*Profile*/
 
 #followandscription_font{
-    font-size: 14px;
+    font-size: 16px;
 }
 #followandscription_font a {
     color :black;
 }
-#followandscription_font a:hover{
-    color:grey;
+
+
+.col-md-7 p{
+    font-size: 16px;
 }
 
 #masonry-rows  [class*='col-'] {
@@ -545,6 +541,7 @@ span.twitter-typeahead .tt-suggestion:last-child {
     }
   }
 }
+
 
 .contentPanel{
     padding: 0px 20px 20px 20px;

@@ -8,12 +8,12 @@ use yii\captcha\Captcha;
 $this->title = 'Privacy Policy';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-privacy col-md-10 col-md-offset-1">
+<div class="site-privacy col-md-10 col-md-offset-1 panel contentPanel">
     <h1><?= Html::encode($this->title) ?></h1>
 
     
 
-    <div class="col-md-12">
+    <div class="col-md-12"  >
         <h2>Privacy Policy</h2>
 
 		<p>Born to Cook operates the borntocook.com website, which provides the SERVICE.</p>

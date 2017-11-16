@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup col-md-6 col-md-offset-3">
+<div class="site-signup col-md-6 col-md-offset-3 panel contentPanel">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('signupFormSubmitted')): ?>

@@ -21,8 +21,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href="css/typeahead.css"  rel="stylesheet" />
-    <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="/dev1/web/css/typeahead.css"  rel="stylesheet" />
+    <link href="/dev1/web/css/bootstrap-tagsinput.css" rel="stylesheet">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -104,9 +104,11 @@ AppAsset::register($this);
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel" id="panel1" >                                
                             <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/#'" >Home</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/subscribed tag'" >Subscribed tag</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/following'" >Following</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='/dev1/web/site/faq'" >FAQ</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/changepw'" >Change password</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/subscription?userId=<?=\Yii::$app->user->identity->id;?>'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/profile/following?userId=<?=\Yii::$app->user->identity->id;?>'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/dev1/web/site/faq'" >FAQ</button>
 
                         </div>
                         </div>
@@ -139,7 +141,7 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script src="/dev1/web/assets/7529bef6/js/bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
@@ -153,9 +155,9 @@ var msnry = new Masonry( container, {
 
 </script>
     
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap3-typeahead.js"></script>
-<script src="js/typeahead.bundle.js"></script>
+<script src="/dev1/web/js/jquery-1.11.2.min.js"></script>
+<script src="/dev1/web/js/bootstrap3-typeahead.js"></script>
+<script src="/dev1/web/js/typeahead.bundle.js"></script>
 <script>
     var tags = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -193,22 +195,20 @@ var msnry = new Masonry( container, {
         }
     });
 
-    // jQuery('#tags-input').tagsinput({
-    //     itemValue: 'value',
-    //     itemText: 'text',
-    //     typeahead: {
-    //         displayKey: 'text',
-    //         afterSelect: function(val) { this.$element.val(""); },
-    //         source: function () {
-    //             return jQuery.get("http://project.julab.hk/dev1/web/site/search");
-    //         }
-    //     }
-    // });
-
     function gotosearch(){
         var includingTags = $("#tags-input").val();
         var excludingTags = $("#xtags-input").val();
-        alert("Including: "+includingTags+"<br>"+"Excluding: "+excludingTags);
+        // alert("Including: "+includingTags+"<br>"+"Excluding: "+excludingTags);
+        if(includingTags!=null && excludingTags!=null){
+            window.location.replace("/dev1/web/site/?tag="+includingTags+"&xTag="+excludingTags);
+        }else if(includingTags!=null){
+            window.location.replace("/dev1/web/site/?tag="+includingTags);
+        }else if(excludingTags!=null){
+            window.location.replace("/dev1/web/site/?xTag="+excludingTags);
+        }else{
+            alert("Please enter tag to search.");
+        }
+        
     }
 
 </script>
