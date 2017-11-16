@@ -21,8 +21,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href="css/typeahead.css"  rel="stylesheet" />
-    <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="/dev1/web/css/typeahead.css"  rel="stylesheet" />
+    <link href="/dev1/web/css/bootstrap-tagsinput.css" rel="stylesheet">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -155,9 +155,9 @@ var msnry = new Masonry( container, {
 
 </script>
     
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap3-typeahead.js"></script>
-<script src="js/typeahead.bundle.js"></script>
+<script src="/dev1/web/js/jquery-1.11.2.min.js"></script>
+<script src="/dev1/web/js/bootstrap3-typeahead.js"></script>
+<script src="/dev1/web/js/typeahead.bundle.js"></script>
 <script>
     var tags = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -210,7 +210,17 @@ var msnry = new Masonry( container, {
     function gotosearch(){
         var includingTags = $("#tags-input").val();
         var excludingTags = $("#xtags-input").val();
-        alert("Including: "+includingTags+"<br>"+"Excluding: "+excludingTags);
+        // alert("Including: "+includingTags+"<br>"+"Excluding: "+excludingTags);
+        if(includingTags!=null && excludingTags!=null){
+            window.location.replace("/dev1/web/site/?tag="+includingTags+"&xTag="+excludingTags);
+        }else if(includingTags!=null){
+            window.location.replace("/dev1/web/site/?tag="+includingTags);
+        }else if(excludingTags!=null){
+            window.location.replace("/dev1/web/site/?xTag="+excludingTags);
+        }else{
+            alert("Please enter tag to search.");
+        }
+        
     }
 
 </script>

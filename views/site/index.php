@@ -14,10 +14,10 @@ $this->title = 'Homepage';
                 $avgRating = $recipe->rating / $recipe->numOfRate;
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
-                    <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
+                    <a href="/dev1/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
+                                <img src="/dev1/web/img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
                                 <br>
                             </div>    
                             <div class="panel-footer">
@@ -42,7 +42,7 @@ $this->title = 'Homepage';
                                     <?= $recipe->description ?>
                                 </p>
                                 <p class="info">
-                                    By <a href="profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
+                                    By <a href="/dev1/web/profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
                                         <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
                                     <?php endforeach;?>
