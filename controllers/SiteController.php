@@ -83,6 +83,7 @@ class SiteController extends Controller
                 $includingTagsArray = explode(",", $includingTags);
                 foreach ($includingTagsArray as $includingTagName) {
                     $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$includingTagName.'"')->one();
+                    $includingTagIdsArray[] = $tag->tagId;
                     $whereArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) > 0';
                 }
             }
@@ -95,8 +96,8 @@ class SiteController extends Controller
                 }
             }
             if(isset($includingTagIds)){
-                $includingTagsArray = explode(",", $includingTagIds);
-                foreach ($includingTagsArray as $includingTagId) {
+                $includingTagIdsArray = explode(",", $includingTagIds);
+                foreach ($includingTagIdsArray as $includingTagId) {
                     $whereArray[] = 'FIND_IN_SET("'.$includingTagId.'", tagIds) > 0';
                 }
             }
@@ -154,11 +155,27 @@ class SiteController extends Controller
             }
         }
 
+
+        if(isset($includingTagIdsArray)&&!empty($includingTagIdsArray)){
+            // display searched tags
+            $displayTagId = implode(',', $includingTagIdsArray);
+            Yii::$app->session->setFlash('isSearch');
+            return $this->render('index', [
+                'tag' => $recipesTagArray,
+                'user' => $recipesUserArray,
+                'recipes' => $recipes,
+                'pagination' => $pagination,
+                'displayTagId' => $displayTagId,
+            ]);
+        }
+
+
         return $this->render('index', [
             'tag' => $recipesTagArray,
             'user' => $recipesUserArray,
             'recipes' => $recipes,
             'pagination' => $pagination,
+            // 'displayTagId' => $displayTagId,
         ]);
 
     }
@@ -268,6 +285,79 @@ class SiteController extends Controller
         }
         // print_r($user_arr2);
         echo json_encode($user_arr2);
+    }
+
+    public function actionGetsubscriblebtn()
+    {   
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+        }else{
+            return false;
+        }
+
+        if(isset($_GET['tagIds'])&& !empty($_GET['tagIds'])){
+            $tagIds = htmlspecialchars($_GET['tagIds']);
+        }else{
+            return false;
+        }
+
+        $userInfo = User::findBySql('SELECT * FROM user WHERE id = '.$userId)->one();
+        $userSubscribeArray = explode(',', $userInfo->subscribeTagId);
+
+        $tagIdArray = explode(',', $tagIds);
+
+        echo '<div class="hashtag">';
+        foreach ($tagIdArray as $id) {
+            $tagInfo = Tag::findBySql('SELECT * FROM tag WHERE tagId = '.$id)->one();
+            if(in_array($tagInfo->tagId, $userSubscribeArray))
+                $toFollow = '-';
+            else
+                $toFollow = '+';
+            echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
+        }
+        echo '</div>';
+
+
+    }
+
+    public function actionSubscribe()
+    {
+        if(isset($_GET['userid'])&& !empty($_GET['userid'])){
+            $userId = htmlspecialchars($_GET['userid']);
+        }
+        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
+            $tagId = htmlspecialchars($_GET['tagId']);
+        }
+
+
+        $userInfo = User::findBySql('SELECT * FROM user WHERE id ='.$userId)->one();
+
+        $subscribedTagIdsArray = explode(",", $userInfo->subscribeTagId);
+
+        
+        if(in_array($tagId, $subscribedTagIdsArray)){
+            $subscribed = 1;
+
+            if (($deleted = array_search($tagId, $subscribedTagIdsArray)) !== false) {
+                unset($subscribedTagIdsArray[$deleted]);
+            }
+
+            $newsubscribe = implode(",",$subscribedTagIdsArray);
+
+            $updatesubscribe =Yii::$app->db->createCommand()->update('user' , ['subscribeTagId' => $newsubscribe],'id = "'.$userId.'"')->execute();
+        }
+        else{
+            $subscribed = 0;
+            if($userInfo->subscribeTagId != null && $userInfo->subscribeTagId != ""){
+                $addsubscribeTagId = $userInfo->subscribeTagId .",".$tagId;
+            }else{
+                $addsubscribeTagId = $tagId;
+            }
+
+            $updatesubscribe =Yii::$app->db->createCommand()->update('user' , ['subscribeTagId' => $addsubscribeTagId],'id = "'.$userId.'"')->execute();  
+        } 
+
+        echo $subscribed;
     }
 
     public function actionAboutus()

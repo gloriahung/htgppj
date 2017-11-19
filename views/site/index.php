@@ -8,6 +8,19 @@ $this->title = 'Homepage';
 <div class="site-index">
 
     <div class="body-content">
+
+
+        <?php if (Yii::$app->session->hasFlash('isSearch')):
+
+           echo '<div class="row hashtagRow">';
+            // echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId=2&tagIds=1,2');
+            echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$displayTagId);
+            // include Html::encode($_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId=2&tagIds=1,2');
+            echo '</div>';
+
+         endif; ?>
+
+
         <div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 
@@ -15,7 +28,11 @@ $this->title = 'Homepage';
                 $avgRating = $recipe->rating / $recipe->numOfRate;
                 else
                 $avgRating = 0;
+
+            
             ?>
+
+
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
                         <div class="panel panel-default">
@@ -69,3 +86,4 @@ var msnry = new Masonry( container, {
 });          
 
 </script>
+<script src="/web/js/subscribe.js?t=<?=time();?>"></script>

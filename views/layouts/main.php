@@ -23,7 +23,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <link href="/web/css/typeahead.css"  rel="stylesheet" />
     <link href="/web/css/bootstrap-tagsinput.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -148,7 +148,7 @@ AppAsset::register($this);
 <?php $this->endPage() ?>
 
 
-    
+<!-- <script src="/web/js/subscribe.js"></script> -->
 <!-- <script src="/web/js/jquery-1.11.2.min.js"></script> -->
 <script src="/web/js/bootstrap3-typeahead.js"></script>
 <script src="/web/js/typeahead.bundle.js"></script>
@@ -158,7 +158,7 @@ AppAsset::register($this);
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       prefetch: {
         // url: 'data/countries.json',
-        url: 'site/search/',
+        url: '/web/site/search/',
         filter: function(list) {
           return $.map(list, function(name) {
             return { name: name }; });
