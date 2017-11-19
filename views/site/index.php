@@ -13,9 +13,10 @@ $this->title = 'Homepage';
         <?php if (Yii::$app->session->hasFlash('isSearch')):
 
            echo '<div class="row hashtagRow">';
-            // echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId=2&tagIds=1,2');
-            echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$displayTagId);
-            // include Html::encode($_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId=2&tagIds=1,2');
+            if(Yii::$app->user->isGuest)
+                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$displayTagId);
+            else
+                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$displayTagId);
             echo '</div>';
 
          endif; ?>

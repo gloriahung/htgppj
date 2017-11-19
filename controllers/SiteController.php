@@ -24,19 +24,27 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout','login','signup','forgetpassword'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['login','signup','forgetpassword'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],              
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'subscribe' => ['get'],
+                    'search' => ['get'],
+                    'getsubscriblebtn' => ['get'],
                 ],
             ],
         ];
@@ -289,11 +297,6 @@ class SiteController extends Controller
 
     public function actionGetsubscriblebtn()
     {   
-        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
-            $userId = htmlspecialchars($_GET['userId']);
-        }else{
-            return false;
-        }
 
         if(isset($_GET['tagIds'])&& !empty($_GET['tagIds'])){
             $tagIds = htmlspecialchars($_GET['tagIds']);
@@ -301,19 +304,25 @@ class SiteController extends Controller
             return false;
         }
 
-        $userInfo = User::findBySql('SELECT * FROM user WHERE id = '.$userId)->one();
-        $userSubscribeArray = explode(',', $userInfo->subscribeTagId);
-
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+            $userInfo = User::findBySql('SELECT * FROM user WHERE id = '.$userId)->one();
+            $userSubscribeArray = explode(',', $userInfo->subscribeTagId);
+        }
         $tagIdArray = explode(',', $tagIds);
 
         echo '<div class="hashtag">';
         foreach ($tagIdArray as $id) {
             $tagInfo = Tag::findBySql('SELECT * FROM tag WHERE tagId = '.$id)->one();
-            if(in_array($tagInfo->tagId, $userSubscribeArray))
-                $toFollow = '-';
-            else
-                $toFollow = '+';
-            echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
+            if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+                if(in_array($tagInfo->tagId, $userSubscribeArray))
+                    $toFollow = '-';
+                else
+                    $toFollow = '+';
+                echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
+            }else{
+                echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a></span>';
+            }
         }
         echo '</div>';
 
