@@ -8,7 +8,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
-use app\models\ForgetPasswordForm;
+use app\models\ForgetpasswordForm;
 use yii\data\Pagination;
 use app\models\Recipe;
 use app\models\User;
@@ -225,7 +225,7 @@ class SiteController extends Controller
     public function actionForgetpassword()
     {
         
-        $model = new ForgetPasswordForm();
+        $model = new ForgetpasswordForm();
         if ($model->load(Yii::$app->request->post()) && $model->forgetpassword()){
             Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
             return $this->refresh();

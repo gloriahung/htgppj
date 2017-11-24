@@ -136,6 +136,8 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
@@ -143,7 +145,12 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+    #w1{
+        display:none;
+    }
 }
+ 
+
 
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
@@ -190,6 +197,21 @@ a.desc:after {
         background-color: #286090;
         border-color: #204d74;
     }
+
+    #w2{
+        display:none;
+    }
+
+    #logoutbutton:hover{
+        background-color: #ffe0b3;
+        border-color: black;
+       
+
+    }
+
+    #logoutbutton{
+         width:197px;
+    }
 }
 
 .navbar-toggle:before {
@@ -222,7 +244,7 @@ a.desc:after {
 }
 
 .btn1{
-    width:160px;
+    width:197px;
 
     background-color: #FFE0B2;
     border:solid 2px #41403E;
@@ -314,9 +336,10 @@ a.desc:after {
 
 }
 
-#logoutbutton{
+#profilebutton{
     height:36px;
     padding-top:1px;
+
 }
 
 #search-dropdown .dropdown-toggle{
@@ -425,6 +448,19 @@ hr {
     .search-dropdown .hashtag a{
         font-size: 15px;
     }
+
+    #logoutbutton{
+        width:399px;
+        text-align: center;
+        
+
+    }
+    .btn1{
+    width:49%;
+
+    ]
+
+
 }
 
 

@@ -37,10 +37,10 @@ class ForgetPasswordForm extends Model
     public function forgetpassword()
     {
         if($this->validate()){
-            return true;
+            return 1;
         }
         else{
-            return false;
+            return 0;
         }
     }
 
