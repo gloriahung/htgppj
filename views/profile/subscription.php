@@ -6,13 +6,14 @@ use yii\widgets\LinkPager;
 $this->title = '[User Name] - cook';
 
 ?>
+
 <div class="container-fluid" style='width:80%'>
 
   <h1>Subscription: <?= $numOfSub ?></h1>
   
   <hr>
 
-   <div id="masonry-rows">
+        <div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 
                 if($recipe->numOfRate!=0)
@@ -21,10 +22,10 @@ $this->title = '[User Name] - cook';
                 $avgRating = 0;
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
-                    <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
+                    <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="../img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
+                                <img src="/web/img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
                                 <br>
                             </div>    
                             <div class="panel-footer">
@@ -49,7 +50,7 @@ $this->title = '[User Name] - cook';
                                     <?= $recipe->description ?>
                                 </p>
                                 <p class="info">
-                                    By <a href="profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId]?> </a>
+                                    By <a href="/web/profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
                                         <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
                                     <?php endforeach;?>
@@ -62,3 +63,13 @@ $this->title = '[User Name] - cook';
             </div>
         </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<script type='text/javascript'>
+var container = document.querySelector('.recipe-index');
+var msnry = new Masonry( container, {
+   itemSelector: '.each-recipe'
+});          
+
+</script>
+<script src="/web/js/subscribe.js?t=<?=time();?>"></script>
