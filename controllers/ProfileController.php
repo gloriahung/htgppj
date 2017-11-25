@@ -187,10 +187,6 @@ class ProfileController extends Controller
 
         
 
-
-
-
-
         return $this->render('index', [
             'tag' => $recipesTagArray,
             'userInfo' => $userInfo,
@@ -272,6 +268,7 @@ class ProfileController extends Controller
     //     ]);
     // }
 
+
     public function actionFollowsub(){
          if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $userId = htmlspecialchars($_GET['userId']);
@@ -325,7 +322,7 @@ class ProfileController extends Controller
         
 
         $numOfFol = 0;
-;
+
         $followingUserIdArray = explode(",", $userInfo->followingUserId);
         foreach ($followingUserIdArray as $followingId) {
                 $numOfFol++;

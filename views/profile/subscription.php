@@ -20,8 +20,6 @@ $this->title = '[User Name] - cook';
                 $avgRating = $recipe->rating / $recipe->numOfRate;
                 else
                 $avgRating = 0;
-
-            
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">

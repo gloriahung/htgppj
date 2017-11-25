@@ -9,7 +9,8 @@ use app\models\Comment;
 use app\models\User;
 use app\models\Recipe;
 use app\models\Tag;
-
+use app\models\RecipeForm;
+use yii\web\UploadedFile;
 
 
 class RecipeController extends Controller
@@ -95,9 +96,27 @@ class RecipeController extends Controller
         ]);
     }
     
-    public function actionPostform(){
-        return $this->render('postform');
+    public function actionPostform()
+    {
+        $model = new RecipeForm();
+        if ($model->load(Yii::$app->request->post())) {
+
+            // get the instance of the image
+            $image = UploadedFile::getInstance($model, 'recipePhoto');
+            $model->recipePhoto = $image->baseName.'.'.$image->extension;
+
+            if($model->save()){
+                $image->saveAs('/var/www/html/project.julab.hk/dev2/web/img/recipeImg/'.$model->recipePhoto);
+                Yii::$app->session->setFlash('postFormSubmitted');
+                return $this->refresh();
+            }
+            
+        }
+        return $this->render('postform', [
+            'model' => $model,
+        ]);
     }
+
 
 
     

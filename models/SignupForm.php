@@ -30,8 +30,20 @@ class SignUpForm extends Model
             'password' => [['password'], 'string', 'max' => 60],
             // validates if the value of "password" attribute equals to that of "password_repeat"
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
+            ['name','validateName'],
         ];
     }
+
+    public function validateName($attribute,$params){
+        $user = User::findBySql("SELECT * FROM user WHERE username = '".$this->name."'")->one();
+            if(empty($user)){
+                return true;
+            } 
+            else{
+                $this->addError($attribute, 'Username already used');
+            }
+        }
+    
 
     /**
      * Sends an email to the specified email address using the information collected by this model.
@@ -57,20 +69,20 @@ class SignUpForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-            try{
-                $user = new User();
-                $user->username = $this->name;
-                $user->email = $this->email;
-                $user->password = $this->password;
-                $user->authKey = md5(openssl_random_pseudo_bytes(20));
-                $user->active = 1;
-                $user->save();
+            Yii::$app->db->createCommand()->insert('user',[
+               
+                'username' => $this->name,
+                'email' => $this->email,
+                'password' => $this->password,
+                'authKey' => md5(openssl_random_pseudo_bytes(20)),
+                'active' => 1,
+            ])->execute();
                 return true;
             }
-            catch(Exception $e){
+            /*catch(Exception $e){
                  echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
-        }
+            }*/
+        
         return false;
     }
 }
