@@ -56,6 +56,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<action:\w+>' => 'site/<action>',
+                'admin'=>'admin/index',
             ],
         ],
         
