@@ -15,7 +15,7 @@ class ChangePwForm extends Model{
     {
         return [
             [['old_password', 'password', 'comfirm_password'], 'required'],
-            'password' => [['password'], 'string', 'max' => 60],
+            'password' => [['password'], 'string', 'max' => 20 ,'min' => 6],
             // validates if the value of "password" attribute equals to that of "comfirm_password"
             ['comfirm_password', 'compare', 'compareAttribute' => 'password'],
         ];

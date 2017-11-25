@@ -16,8 +16,10 @@ class EditForm extends Model{
     public function rules()
     {
         return [
+        [['name', 'introduction'], 'required'],
         [['icon'], 'file', 'skipOnEmpty' => true, 'extensions'=>'png, jpg, gif'],
-        'name' => [['name'], 'string', 'max' => 60]];
+        'name' => [['name'], 'string', 'max' => 20 ,'min' => 4],
+        'introduction' => [['introduction'], 'string', 'max' => 100]];
     }
 
 
@@ -25,15 +27,13 @@ class EditForm extends Model{
     {
         if ($this->validate()) {
             try{
-            	$id = Yii::$app->user->identity->id;
-            	$user = User::findBySql('SELECT * FROM user WHERE id ='.$id)->one();
-
-                if($this->name != null){
+            	$id = Yii::$app->user->identity->id; 
+               
                 Yii::$app->db->createCommand()->update('user', ['username' => $this->name], 'id = "'.$id.'"')->execute();
-                }
-                if ($this->introduction != null){
+               
+             
                 Yii::$app->db->createCommand()->update('user', ['userIntro' => $this->introduction], 'id = "'.$id.'"')->execute();
-                }
+                
                 return true;
             }
             catch(Exception $e){

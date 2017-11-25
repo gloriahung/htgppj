@@ -13,15 +13,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="col-xs-12">
     <div class="user">
-    
-    <?php foreach($followingArray as $id => $following): ?>
+     <?php if ($numOfFol != 0): ?>
+      <?php foreach($followingArray as $id => $following): ?>
         <div class="col-xs-4">
         <img src="../img/userIcon/<?= $userIcon[$id] ?>" alt="<?= $username[$id] ?>" title="<?= $username[$id] ?>">
         <a href="index?userId=<?= $id ?>">
           <?= $username[$id] ?></a>
           </div>
         <?php endforeach;?>
-
+        <?php endif; ?>
         </div>
     </div>
     </div>
@@ -33,13 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-xs-12">
     <div class="hashtag">
 
-
+    <?php if ($numOfSub != 0): ?>
     <?php foreach($tagArray as $tagId => $tag): ?>
       <div class="col-xs-4">
         <a href="../index?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tag ?></span></a>
         </div>
     <?php endforeach;?>
-
+    <?php endif; ?>
     
     </div>
   </div>

@@ -26,13 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-xs-12">
 
-                <?php $form = ActiveForm::begin(['id' => 'edit-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'edit']); ?>
 
                     <?= $form->field($model, 'icon')->fileInput() ?>
 
-                    <?= $form->field($model, 'name')->textInput()->hint('If no input, it will remain unchange.') ?>    
+                    <?= $form->field($model, 'name')->textInput(['value' => "$user->username"]) ?>    
 
-                    <?= $form->field($model, 'introduction')->textArea(['autofocus' => true])->hint('If no input, it will remain unchange.') ?>
+                    <?= $form->field($model, 'introduction')->textarea(['value' => "$user->userIntro"]) ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'edit-button']) ?>

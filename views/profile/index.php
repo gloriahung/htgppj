@@ -7,29 +7,7 @@ $this->title = 'Profile - cook';
 ?><!-- 
 <script src = "../js/aJaxtesting.js"></script> --><!-- 
 <script src="/dev3/web/assets/a8f6f288/jquery.js"></script> -->
-<script>
-    function fnBookmark(userid,usinguserid){
 
-$.ajax({
-                    url:'follow?userid='+userid+'&usinguserid='+usinguserid,
-                    type:'GET',
-                    dataType:'json',
-                    success:function(data){
-                          if(data == 1)
-                          {
-                                  // $("#afollowbutton").attr("class", "unfollow");
-                                $("#afollowbutton").text("follow");
-                          }
-                          else if(data == 0)
-                          {
-                              // $("#afollowbutton").attr("class", "follow");
-                                $("#afollowbutton").text("unfollow");
-                          }
-                    
-                    }
-        });
-}
-    </script>
 <div class="text-center">
   <div class="row">
     <br><br>
@@ -46,20 +24,23 @@ $.ajax({
               <?php if($followed == 1): ?>
                    <button type="button" id="afollowbutton" class="unfollow btn btn-default btn-sm" onClick ="fnBookmark(<?= $userInfo->id ?>,<?= $usinguserId?>)">unfollow</button>
                 <?php else: ?>
+                  <?php if($followed == 2): ?>
                     <a href ="../profile/edit"><img src="../img/profileImg/editbutton.png" class="img-rounded" alt="edit button" title="edit button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a>
+                  <?php else: ?>
                 <?php endif; ?>
             <?php endif; ?>
+          <?php endif; ?>
         
             </h1>
       <div id ="followandscription_font">
-        <a href = "../profile/followsub?userId=<?= $userInfo->id ?>">following&nbsp;&nbsp;: <?= $numOfFol ?>&nbsp;&nbsp;subscription  : <?= $numOfSub ?>
+        <a href = "../profile/followsub?userId=<?= $userInfo->id ?>" style="text-decoration: none">following&nbsp;&nbsp;: <?= $numOfFol ?>&nbsp;&nbsp;subscription  : <?= $numOfSub ?>
         </a>
         <br>
         post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?= $numOfPost ?>
         <br>
       </div>
       <br>
-      <p><?= $userInfo->userIntro ?></p> 
+      <p><?= $userInfo->userIntro ?></p>
       <br>
     </div>
     
@@ -67,8 +48,12 @@ $.ajax({
   <hr>
  <div id="masonry-rows">
             <div class="row recipe-index">
-            <?php foreach ($recipes as $recipe): 
+            <?php foreach ($recipes as $recipe):
+                if($recipe->numOfRate == 0){
+                  $avgRating = 0;
+                }else{
                 $avgRating = $recipe->rating / $recipe->numOfRate;
+              }
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
@@ -115,4 +100,35 @@ $.ajax({
   
 </div>
 
+<script>
+    function fnBookmark(userid,usinguserid){
 
+$.ajax({
+                    url:'follow?userid='+userid+'&usinguserid='+usinguserid,
+                    type:'GET',
+                    dataType:'json',
+                    success:function(data){
+                          if(data == 1)
+                          {
+                                  // $("#afollowbutton").attr("class", "unfollow");
+                                $("#afollowbutton").text("follow");
+                          }
+                          else if(data == 0)
+                          {
+                              // $("#afollowbutton").attr("class", "follow");
+                                $("#afollowbutton").text("unfollow");
+                          }
+                    
+                    }
+        });
+}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<script type='text/javascript'>
+var container = document.querySelector('.recipe-index');
+var msnry = new Masonry( container, {
+   itemSelector: '.each-recipe'
+});          
+
+</script>
+<script src="/web/js/subscribe.js?t=<?=time();?>"></script>
