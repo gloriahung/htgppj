@@ -16,6 +16,8 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+
+
     /**
      * @inheritdoc
      */
@@ -50,11 +52,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'password' => 'Password',
             'authKey' => 'Auth Key',
             'active' => 'Active',
+            'role' => 'Role',
         ];
     }
 
     public function getAuthKey(){
         return $this->authKey;
+    }
+
+    public function getRole(){
+        return $this->role;
     }
 
     public function getId(){
@@ -79,5 +86,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function validatePassword($password){
         return $this->password === $password;
+    }
+
+    public function validateRole($role){
+        return $this->role === $role;
     }
 }
