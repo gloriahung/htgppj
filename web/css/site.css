@@ -34,7 +34,7 @@ body {
 .wrap::after {
     content: "";
     background: url(https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/27911/1160/772/m1/fpnw/wm0/1-.jpg?1373984858&s=785bdbec2c9035f29c7651ffb3da25bc);
-    opacity: 0.2;
+    opacity: 0.09;
     top: 0;
     left: 0;
     bottom: 0;
@@ -161,6 +161,12 @@ a.desc:after {
 
 .navbar a{
     color: black;
+}
+
+.navbar-header .navbar-brand{
+    font-size: 25px;
+    text-shadow: 2px 2px 5px #41403e;
+    color: #f5f5f5;
 }
 
 @media (min-width: 768px){
@@ -600,6 +606,10 @@ span.twitter-typeahead .tt-suggestion:last-child {
     margin-bottom: 20px;
     margin-left: 2px;
 
+}
+
+.hashtagRow .hashtag {
+    display: inline;
 }
 
 .hashtagRow .label{
