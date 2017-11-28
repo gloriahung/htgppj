@@ -9,6 +9,7 @@ $this->title = 'Profile - cook';
 <script src="/dev3/web/assets/a8f6f288/jquery.js"></script> -->
 
 <div class="text-center">
+
   <div class="row">
     <br><br>
     <div class="col-md-5">
@@ -56,7 +57,7 @@ $this->title = 'Profile - cook';
               }
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
-                    <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
+                    <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <img src="../img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
@@ -84,10 +85,18 @@ $this->title = 'Profile - cook';
                                     <?= $recipe->description ?>
                                 </p>
                                 <p class="info">
-                                    By <a href="profile/index?userId=<?= $recipe->userId ?>"> <?= $userInfo->username ?> </a>
+                                    By <a href="index?userId=<?= $recipe->userId ?>"> <?= $userInfo->username ?> </a> 
+                                    <div class="row hashtagRow"> 
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
-                                        <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
+                              
+                                      <?php if(Yii::$app->user->isGuest)
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$tagId);
+                                            else
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$tagId);    
+                                       ?>
+                                       <!--  <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a> -->
                                     <?php endforeach;?>
+                                    </div>
                                 </p>
                             </div>
                         </div>
@@ -132,3 +141,4 @@ var msnry = new Masonry( container, {
 
 </script>
 <script src="/web/js/subscribe.js?t=<?=time();?>"></script>
+
