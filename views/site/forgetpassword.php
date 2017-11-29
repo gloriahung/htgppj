@@ -1,7 +1,7 @@
 <?php 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ForgetPasswordForm */
+/* @var $model app\models\ForgetpasswordForm */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
@@ -23,7 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php else: ?>
 
-                
+
+    <div class="col-md-12">
+        please enter your email address, a new password will be sent to your mail box
+        </div>
+
 
 
                 <div class="row">
