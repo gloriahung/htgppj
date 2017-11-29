@@ -58,26 +58,6 @@ class SignUpForm extends Model
     }
     
 
-    /**
-     * Sends an email to the specified email address using the information collected by this model.
-     * @param string $email the target email address
-     * @return bool whether the model passes validation
-     */
-    // public function signup($email)
-    // {
-    //     if ($this->validate()) {
-    //         Yii::$app->mailer->compose()
-    //             ->setTo($email)
-    //             ->setFrom([$this->email => $this->name])
-    //             ->setSubject("Sign Up")
-    //             ->setTextBody($this->password)
-    //             ->send();
-
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     // save signup data to db 
     public function signup()
     {
@@ -92,9 +72,6 @@ class SignUpForm extends Model
             ])->execute();
                 return true;
             }
-            /*catch(Exception $e){
-                 echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }*/
         
         return false;
     }

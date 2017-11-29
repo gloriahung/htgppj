@@ -37,28 +37,6 @@ AppAsset::register($this);
 
                 <span class="icon-bar"></span></button><a class="navbar-brand" href="/web/">BornToCOOK</a>
 
-
-                <!-- <div class="dropdown" id="search-dropdown" >
-                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
-                    <span class="caret"></span></button>
-                    <div class="dropdown-menu panel panel-default">
-                        <span class="dropdown-header">Search Including Tags</span>
-                        <span>
-                            <div class="bgcolor navbar-center" id="search-included">
-                                <select type="text" value="" id="tags-input" data-role="tagsinput" multiple></select>
-                            </div>
-                        </span>
-                        <span class="divider"></span>
-                        <span class="dropdown-header">Search Excluding Tags</span>
-                        <span>
-                            <div class="bgcolor navbar-center" id="search-excluded">
-                                <select type="text" value="" id="xtags-input" data-role="xtagsinput" multiple></select>
-                            </div>
-                        </span> 
-                        <button class="btn btn-success" type="button" onclick="gotosearch()">Go</button>
-                    </div>
-                </div> -->
-
                 <!-- Trigger the modal with a button -->
                 <button type="button" id="searchBtn" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Search <i class="fa fa-search" aria-hidden="true"></i></button>
 
@@ -112,13 +90,7 @@ AppAsset::register($this);
                         <div class="dropdown">
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="dropdown2"><i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel " id="panel1">                                
-
-<<<<<<< HEAD
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/'">Home</button>
-=======
-                            <button class="btn1 btn-success" type="button" onclick="location.href='h/web/'">Home</button>
->>>>>>> 2fcf9bbaf1fbcf7a0f96b1945046d86d52bba2f8
-
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
 
                         </div>
@@ -174,12 +146,6 @@ AppAsset::register($this);
                         )
                         . Html::endForm()
                         ?>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2fcf9bbaf1fbcf7a0f96b1945046d86d52bba2f8
-
                         </div>
                         </div>
                     </li>
@@ -302,7 +268,6 @@ AppAsset::register($this);
     function gotosearch(){
         var includingTags = $("#tags-input").val();
         var excludingTags = $("#xtags-input").val();
-        // alert("Including: "+includingTags+"<br>"+"Excluding: "+excludingTags);
         if(includingTags!=null && excludingTags!=null){
             window.location.replace("/web/site/?tag="+includingTags+"&xTag="+excludingTags);
         }else if(includingTags!=null){
