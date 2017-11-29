@@ -8,12 +8,12 @@ use yii\captcha\Captcha;
 $this->title = 'Sitemap';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-sitemap col-md-10 col-md-offset-1 panel contentPanel">
+<div class="site-sitemap col-md-10 col-md-offset-1">
     <h1><?= Html::encode($this->title) ?></h1>
 
     
 
-    <div class="col-md-12 panel panel-mation">
+    <div class="col-md-12">
         This is the sitemap
         </div>
 

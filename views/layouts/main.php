@@ -218,7 +218,7 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/dev1/web/assets/7529bef6/js/bootstrap.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
@@ -265,6 +265,18 @@ AppAsset::register($this);
         }
     });
 
+    // jQuery('#tags-input').tagsinput({
+    //     itemValue: 'value',
+    //     itemText: 'text',
+    //     typeahead: {
+    //         displayKey: 'text',
+    //         afterSelect: function(val) { this.$element.val(""); },
+    //         source: function () {
+    //             return jQuery.get("http://project.julab.hk/dev1/web/site/search");
+    //         }
+    //     }
+    // });
+
     function gotosearch(){
         var includingTags = $("#tags-input").val();
         var excludingTags = $("#xtags-input").val();
@@ -277,7 +289,6 @@ AppAsset::register($this);
         }else{
             alert("Please enter tag to search.");
         }
-        
     }
 
 </script>

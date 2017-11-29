@@ -1,18 +1,16 @@
 <?php
-use yii\helpers\Html;
-use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
 
-$this->title = '[User Name] - cook';
-
+$this->title = 'Subscription';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="container-fluid" style='width:80%'>
 
-  <h1>Subscription: <?= $numOfSub ?></h1>
-  
+	<h1>Subscription: XX</h1>
+	
   <hr>
-
         <div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 

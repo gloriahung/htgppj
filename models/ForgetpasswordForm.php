@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
-use app\models\User;
 
 /**
  * Forget Password Form is the model behind the forget password form.
@@ -14,8 +13,11 @@ use app\models\User;
  */
 class ForgetPasswordForm extends Model
 {
-
+    //public $username;
     public $email;
+
+
+
 
     /**
      * @return array the validation rules.
@@ -23,6 +25,9 @@ class ForgetPasswordForm extends Model
     public function rules()
     {
         return [
+            //  email or username is required
+            //   email must be a valid email
+            //[['username', 'email'], 'my_required'],
             ['email', 'email'],
             ['email','required']
             
@@ -32,6 +37,9 @@ class ForgetPasswordForm extends Model
     public function forgetpassword()
     {
         if($this->validate()){
+<<<<<<< HEAD
+            return true;
+=======
             $user = User::findBySql('SELECT * FROM user WHERE email = "'.$this->email.'"')->one();
 
             if(empty($user))
@@ -60,10 +68,38 @@ Borntocook";
                 return true;
 
 
+>>>>>>> 6ba8d03d2a080531175891c9e5d5d06f548cfc72
         }
         else{
             return false;
         }
     }
+
+    //check if username or email have entered
+
+    /*public function my_required($attribute, $params)
+    {
+        if (empty($this->username)
+            && empty($this->email)
+    ) {
+        $this->addError($attribute,'At least 1 of the field must be filled up properly.');
+            return false;
+     
+    }
+            return true;
+  
+}
+
+    public function forgetpassword()
+    {
+        if($this->validate){
+            return true;
+        }
+        return false;
+
+    }
+    */
+
+   
    
 }

@@ -7,7 +7,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-	<h1>Following: <?= $numOfFol ?></h1>
+	<h1>Following: XX</h1>
 	
 <hr>
 <div id="masonry-rows">
@@ -60,6 +60,79 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
             </div>
         </div>
+      <h5>Description</h5>
+      <p>1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+    </div>
+    <div class = "col-md-6 col-lg-4">
+      <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
+      <br>
+      <h4>[Recipe Title]</h4>
+        <div class="rating">
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+        </div>
+      <h5>Description</h5>
+      <p>2XXXXXXXXXXXXXXXXXXXXXX</p>
+    </div><div class = "col-md-6 col-lg-4">
+      <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
+      <br>
+      <h4>[Recipe Title]</h4>
+        <div class="rating">
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+        </div>
+      <h5>Description</h5>
+      <p>3XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+    </div>
+    <div class = "col-md-6 col-lg-4">
+      <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
+      <br>
+      <h4>[Recipe Title]</h4>
+        <div class="rating">
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+        </div>
+      <h5>Description</h5>
+      <p>4XXXXX</p>
+    </div>
+    <div class = "col-md-6 col-lg-4">
+     <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
+      <br>
+      <h4>[Recipe Title]</h4>
+        <div class="rating">
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+        </div>
+      <h5>Description</h5>
+      <p>5XXXXX</p>
+    </div>
+    <div class = "col-md-6 col-lg-4">
+     <a href=#><img src="http://www.mimicollection.hk/image/cache/catalog/Monchhichi/241378-800x800.jpg" class="_2di5p" alt="Postpic" title="Postpic"></a>
+      <br>
+      <h4>[Recipe Title]</h4>
+        <div class="rating">
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+          <span class ="glyphicon glyphicon-star-empty"></span>
+        </div>
+      <h5>Description</h5>
+      <p>6XXXXX</p>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>

@@ -72,21 +72,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        if(isset($_GET['tag'])&& !empty($_GET['tag'])){
-            $includingTags = htmlspecialchars($_GET['tag']);
+        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
+            $includingTags = htmlspecialchars($_GET['tagId']);
         }
-        if(isset($_GET['xTag'])&& !empty($_GET['xTag'])){
-            $excludingTags = htmlspecialchars($_GET['xTag']);
+        if(isset($_GET['xTagId'])&& !empty($_GET['xTagId'])){
+            $excludingTags = htmlspecialchars($_GET['xTagId']);
         }
         if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $followingUsers = htmlspecialchars($_GET['userId']);
         }
-        if(isset($_GET['tagId'])&& !empty($_GET['tagId'])){
-            $includingTagIds = htmlspecialchars($_GET['tagId']);
-        }
 
         $whereArray = array();
-        if(isset($includingTags) ||isset($excludingTags) || isset($includingTagIds)){
+        if(isset($includingTags) ||isset($excludingTags)){
             if(isset($includingTags)){
                 $includingTagsArray = explode(",", $includingTags);
                 foreach ($includingTagsArray as $includingTagName) {
@@ -243,18 +240,14 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail']) /*&& $model->actionEmail()*/) {
+        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('signupFormSubmitted');
             return $this->refresh();
         }
-        else{
         return $this->render('signup', [
             'model' => $model,
         ]);
-        }
     }
-
-    
 
     /**
      * Displays forget password page.
@@ -267,21 +260,14 @@ class SiteController extends Controller
         
 
         $model = new ForgetPasswordForm();
-        if ($model->load(Yii::$app->request->post())){
-            if($model->forgetpassword()){
-                Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
-                return $this->refresh();
-            }else{
-                Yii::$app->session->setFlash('emailDoesNotExistsError');
-                return $this->refresh();
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->forgetpassword()){
+            Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
+            return $this->refresh();
         }
-        else{
         return $this->render('forgetpassword', [
             'model' => $model,
         ]);
     }
-}
 
     /**
      * fetch json data from Database

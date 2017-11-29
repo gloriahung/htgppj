@@ -187,6 +187,10 @@ class ProfileController extends Controller
 
         
 
+
+
+
+
         return $this->render('index', [
             'tag' => $recipesTagArray,
             'userInfo' => $userInfo,
@@ -258,6 +262,7 @@ class ProfileController extends Controller
     //     }
 
 
+
     //     return $this->render('indexedit', [
     //         'tag' => $recipesTagArray,
     //         'userInfo' => $userInfo,
@@ -267,7 +272,6 @@ class ProfileController extends Controller
     //         'numOfFol'=>$numOfFol
     //     ]);
     // }
-
 
     public function actionFollowsub(){
          if(isset($_GET['userId'])&& !empty($_GET['userId'])){
@@ -322,7 +326,7 @@ class ProfileController extends Controller
         
 
         $numOfFol = 0;
-
+;
         $followingUserIdArray = explode(",", $userInfo->followingUserId);
         foreach ($followingUserIdArray as $followingId) {
                 $numOfFol++;

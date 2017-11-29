@@ -25,12 +25,9 @@ $this->title = 'Homepage';
         <div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 
-                if($recipe->numOfRate!=0)
                 $avgRating = $recipe->rating / $recipe->numOfRate;
                 else
                 $avgRating = 0;
-
-            
             ?>
 
 

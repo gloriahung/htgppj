@@ -263,7 +263,6 @@ a.desc:after {
    
 }
 
-
 /*login*/  
 
 .rememberMe{
@@ -376,15 +375,13 @@ a.desc:after {
 /*Profile*/
 
 #followandscription_font{
-    font-size: 16px;
+    font-size: 14px;
 }
 #followandscription_font a {
     color :black;
 }
-
-
-.col-md-7 p{
-    font-size: 16px;
+#followandscription_font a:hover{
+    color:grey;
 }
 
 #masonry-rows  [class*='col-'] {
