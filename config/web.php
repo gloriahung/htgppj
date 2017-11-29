@@ -56,6 +56,7 @@ $config = [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<action:\w+>' => 'site/<action>',
+                'admin'=>'admin/index',
             ],
         ],
         
@@ -70,7 +71,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         // 'allowedIPs' => ['127.0.0.1', '::1','192.168.8.*'],
-        'allowedIPs' => ['*'],
+        // 'allowedIPs' => ['*'],
 
     ];
 
@@ -79,7 +80,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         // 'allowedIPs' => ['127.0.0.1', '::1','192.168.8.*'],
-         'allowedIPs' => ['*'],
+         // 'allowedIPs' => ['*'],
     ];
 }
 

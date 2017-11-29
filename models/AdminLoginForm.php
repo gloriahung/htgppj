@@ -11,11 +11,12 @@ use yii\base\Model;
  * @property User|null $user This property is read-only.
  *
  */
-class LoginForm extends Model
+class AdminLoginForm extends Model
 {
     public $username;
     public $password;
     public $rememberMe = true;
+    public $role;
 
     private $_user = false;
 
@@ -32,6 +33,8 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            // role is validated by validateRole()
+            ['role', 'validateRole'],
         ];
     }
 
@@ -53,16 +56,20 @@ class LoginForm extends Model
         }
     }
 
-
-    public function checkActive()
+    /**
+     * Validates the role.
+     * This method serves as the inline validation for role.
+     *
+     * @param string $attribute the attribute currently being validated
+     * @param array $params the additional name-value pairs given in the rule
+     */
+    public function validateRole($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
-            if (!$user || !$user->checkActive()) {
-                $this->addError('username', 'Your account has been blocked.');
-            }else{
-                return true;
+            if (!$user || !$user->validateRole('admin')) {
+                $this->addError($attribute, 'Incorrect username or role.');
             }
         }
     }
@@ -73,7 +80,7 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate() && $this->checkActive()) {
+        if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;

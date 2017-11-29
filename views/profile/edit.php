@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'icon')->fileInput() ?>
 
-                    <?= $form->field($model, 'name')->textInput(['value' => "$user->username"]) ?>    
+                    <?= $form->field($model, 'username')->textInput(['value' => "$user->username"]) ?>    
 
                     <?= $form->field($model, 'introduction')->textarea(['value' => "$user->userIntro"]) ?>
 

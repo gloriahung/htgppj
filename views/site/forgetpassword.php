@@ -1,7 +1,7 @@
 <?php 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ForgetPasswordForm */
+/* @var $model app\models\ForgetpasswordForm */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
@@ -9,7 +9,28 @@ $this->title = 'Forget Password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-forgetpassword col-md-6 col-md-offset-3">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="panel panel-default contentPanel">
+        <div class="panel-body">
+            <h1><?= Html::encode($this->title) ?></h1>
+            <?php if (Yii::$app->session->hasFlash('forgetpasswordFormSubmitted')): ?>
+
+                <div class="alert alert-success">
+                    A new password have been sent to your mail box,
+                    please login with the new password
+                    You are advised to reset your password immediately after login.
+                </div>
+
+            <?php else: ?>
+
+
+    <div class="col-md-12">
+        please enter your email address, a new password will be sent to your mail box
+        </div>
+
+
+
+                <div class="row">
+                    <div class="col-xs-12">
 
     <?php if (Yii::$app->session->hasFlash('forgetpasswordFormSubmitted')): ?>
 

@@ -8,6 +8,7 @@ $this->title = $recipe->recipeTitle;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+
 <?php if (Yii::$app->session->hasFlash('reportFormSubmitted')): ?>
 
         <div class="alert alert-success">
