@@ -86,7 +86,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function validatePassword($password){
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
-        // return $this->password === $password;
+    }
+
+    public function checkActive(){
+        return $this->active;
     }
 
     public function validateRole($role){
