@@ -11,7 +11,7 @@ use app\models\User;
  */
 class SignUpForm extends Model
 {
-    public $name;
+    public $username;
     public $email;
     public $password;
     public $password_repeat;
@@ -23,22 +23,22 @@ class SignUpForm extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
-            [['name', 'email', 'password', 'password_repeat'], 'required'],
+            // username, email, subject and body are required
+            [['username', 'email', 'password', 'password_repeat'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
             'password' => [['password'], 'string', 'max' => 20 ,'min' => 6],
-            'name' => [['name'], 'string', 'max' => 20 ,'min' => 4],
+            'username' => [['username'], 'string', 'max' => 20 ,'min' => 4],
             // validates if the value of "password" attribute equals to that of "password_repeat"
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
-            ['name','validateName'],
+            ['username','validateName'],
             // email is validated by validateEmail()
             ['email', 'validateEmail'],
         ];
     }
 
     public function validateName($attribute,$params){
-        $user = User::findBySql("SELECT * FROM user WHERE username = '".$this->name."'")->one();
+        $user = User::findBySql("SELECT * FROM user WHERE username = '".$this->username."'")->one();
             if(empty($user)){
                 return true;
             } 
@@ -84,7 +84,7 @@ class SignUpForm extends Model
         if ($this->validate()) {
             Yii::$app->db->createCommand()->insert('user',[
                
-                'username' => $this->name,
+                'username' => $this->username,
                 'email' => $this->email,
                 'password' => Yii::$app->getSecurity()->generatePasswordHash($this->password),
                 'authKey' => md5(openssl_random_pseudo_bytes(20)),
