@@ -8,12 +8,6 @@ body {
     letter-spacing:0.4px;
 }
 
-/*@media (max-width: 767px){
-    html,
-    body {
-        font-family: "Coming Soon";
-    }
-}*/
 
 .wrap {
     min-height: 100%;
@@ -23,7 +17,6 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
-    /*background-color: #FFF8E1;*/
 }
 
 /*background image transparents*/
