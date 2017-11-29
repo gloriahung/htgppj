@@ -1,0 +1,31 @@
+.navbar{
+	background-color: #31708f;
+}
+
+.navbar a {
+    color: white;
+}
+
+.btn {
+    background-color: #f5f5f5;
+}
+
+.navbar-nav > li > a {
+	background-color: #f5f5f5;
+}
+
+.btn2{
+    background-color: #f5f5f5;
+}
+
+.btn1{
+    background-color: #f5f5f5;
+}
+
+h1{
+	color:#31708f;
+}
+
+.wrap::after {
+    opacity: 0.09;
+}

@@ -5,16 +5,19 @@
 $this->title = 'Following';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container-fluid" style='width:80%'>
+
 
 	<h1>Following: <?= $numOfFol ?></h1>
 	
-  <hr>
-
-   <div id="masonry-rows">
+<hr>
+<div id="masonry-rows">
             <div class="row recipe-index">
             <?php foreach ($recipes as $recipe): 
+             if($recipe->numOfRate == 0){
+                  $avgRating = 0;
+                }else{
                 $avgRating = $recipe->rating / $recipe->numOfRate;
+            }
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
@@ -58,3 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<script type='text/javascript'>
+var container = document.querySelector('.recipe-index');
+var msnry = new Masonry( container, {
+   itemSelector: '.each-recipe'
+});          
+
+</script>
+<script src="/web/js/subscribe.js?t=<?=time();?>"></script>
+<div class="container-fluid" style='width:80%'>

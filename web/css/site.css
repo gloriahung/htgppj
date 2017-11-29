@@ -274,6 +274,7 @@ a.desc:after {
    
 }
 
+
 /*login*/  
 
 .rememberMe{
@@ -380,13 +381,15 @@ a.desc:after {
 /*Profile*/
 
 #followandscription_font{
-    font-size: 14px;
+    font-size: 16px;
 }
 #followandscription_font a {
     color :black;
 }
-#followandscription_font a:hover{
-    color:grey;
+
+
+.col-md-7 p{
+    font-size: 16px;
 }
 
 #masonry-rows  [class*='col-'] {
@@ -573,4 +576,74 @@ span.twitter-typeahead .tt-suggestion:last-child {
       left: 0;
     }
   }
+}
+
+
+.contentPanel{
+    padding: 0px 20px 20px 20px;
+    border: #ffa627 1px solid;
+    box-shadow: 9px 8px 5px rgba(121, 121, 121, 0.11);
+}
+
+
+/*tooltip*/
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.showtooltip .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext {
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.hashtagRow{
+    margin-bottom: 20px;
+    margin-left: 2px;
+
+}
+
+.hashtagRow .label{
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.hashtagRow .label a{
+    text-decoration: none;
+    color: white;
 }

@@ -164,19 +164,21 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
             <div class="media-left">
                 <img src="http://placehold.it/36x36" alt="<?=\Yii::$app->user->identity->username;?>" title="<?=\Yii::$app->user->identity->username;?>">
             </div>
-
+			<form action="welcome.php" method="post">
             <div class="media-body">
+			<div class="row lead">
+				<div id="stars" class="starrr"></div>
+				You gave a rating of <span id="count">0</span> star(s)
+			</div>
                 <div class="rate">
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                   <div id="stars" class="starrr"></div>
+					You gave a rating of <span id="count">0</span> star(s)
                 </div>
                 <textarea rows="3" class="form-control" id="commentbox" placeholder="Write Your comment." name="commentbox"></textarea>
             </div>
-        <button type="button" class="btn btn-default pull-right">Post</button>
-
+			
+			<button type="button" class="btn btn-default pull-right">Post</button>
+			</form>
     </div>
   
 </div>
