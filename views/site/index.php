@@ -64,9 +64,14 @@ $this->title = 'Homepage';
                                 </p>
                                 <p class="info">
                                     By <a href="/web/profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
-                                    <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
-                                        <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
-                                    <?php endforeach;?>
+                                    <div class="row hashtagRow">
+                                        <?php foreach($tag[$recipe->recipeId] as $displayTagId => $tagName){
+                                            if(Yii::$app->user->isGuest)
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$displayTagId);
+                                            else
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$displayTagId);
+                                        }?>
+                                    </div>
                                 </p>
                             </div>
                         </div>

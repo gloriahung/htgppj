@@ -91,6 +91,8 @@ class SiteController extends Controller
                 $includingTagsArray = explode(",", $includingTags);
                 foreach ($includingTagsArray as $includingTagName) {
                     $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$includingTagName.'"')->one();
+                    if(!isset($tag->tag))
+                    throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
                     $includingTagIdsArray[] = $tag->tagId;
                     $whereArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) > 0';
                 }
@@ -100,6 +102,8 @@ class SiteController extends Controller
                 $excludingTagsArray = explode(",", $excludingTags);
                 foreach ($excludingTagsArray as $excludingTagName) {
                     $tag = Tag::findBySql('SELECT * FROM tag WHERE tag = "'.$excludingTagName.'"')->one();
+                    if(!isset($tag->tag))
+                    throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
                     $whereNotArray[] = 'FIND_IN_SET("'.$tag->tagId.'", tagIds) = 0';
                 }
             }
@@ -320,9 +324,9 @@ class SiteController extends Controller
                     $toFollow = '-';
                 else
                     $toFollow = '+';
-                echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
+                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span class="tag'.$tagInfo->tagId.'" onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
             }else{
-                echo '<span class="label label-warning"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a></span>';
+                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a></span>';
             }
         }
         echo '</div>';
