@@ -1,15 +1,27 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 
-$this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
+$this->title = $recipe->recipeTitle;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<script src="..\js\starrating.js"></script>
-<div class="container-fluid" style='width:80%'>
-  <h1> <?=$recipe->recipeTitle?> </h1>
-  
-    <div class="row">
+
+<?php if (Yii::$app->session->hasFlash('reportFormSubmitted')): ?>
+
+        <div class="alert alert-success">
+            Recipe reported.
+        </div>
+<?php else: ?>
+
+
+
+    <div class="container-fluid" style='width:80%'>
+
+
+    <h1> <?= Html::encode($this->title) ?> </h1>
+        <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="recipe-photo">
                 <img src="../img/recipeImg/<?= $recipe->imageLink ?>"  alt="<?=$recipe->recipeTitle ?>" title="<?=$recipe->recipeTitle ?>">
@@ -17,22 +29,28 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
         
             <div class="rating">
                 
-                <?php
-                $avgRating = $recipe->rating / $recipe->numOfRate;
-                $intRating = floor($avgRating);
-                $fraction = $avgRating - $intRating; 
-                $remainingRating = 5 - $intRating;
+                    <?php
 
-                if($fraction>0) $remainingRating --;
-                for ($i=0; $i < $intRating ; $i++): ?>
-                    <span class="glyphicon glyphicon-star"></span>
-                <?php endfor;
-                if($fraction>=0.5):?>
-                <i class="glyphicon glyphicon-star half" aria-hidden="true"></i>
-                <?php elseif($fraction != 0): $remainingRating ++; endif;
-                for ($i=0; $i < $remainingRating ; $i++): ?>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                <?php endfor;?>
+                    if($recipe->numOfRate == 0){
+                      $avgRating = 0;
+                    }else{
+                        $avgRating = $recipe->rating / $recipe->numOfRate;
+                    }
+
+                    $intRating = floor($avgRating);
+                    $fraction = $avgRating - $intRating; 
+                    $remainingRating = 5 - $intRating;
+
+                    if($fraction>0) $remainingRating --;
+                    for ($i=0; $i < $intRating ; $i++): ?>
+                        <span class="glyphicon glyphicon-star"></span>
+                    <?php endfor;
+                    if($fraction>=0.5):?>
+                    <i class="glyphicon glyphicon-star half" aria-hidden="true"></i>
+                    <?php elseif($fraction != 0): $remainingRating ++; endif;
+                    for ($i=0; $i < $remainingRating ; $i++): ?>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    <?php endfor;?>
 
                 (<?=$recipe->numOfRate?>)
 				
@@ -40,49 +58,58 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
             </div>
             
             <div class="Author">
-                <img src="../userIcon/<?= $recipeUser->userIcon ?>" alt="<?=$recipeUser->username ?>" title="<?=$recipeUser->username ?>">
+                <img src="../img/userIcon/<?= $recipeUser->userIcon ?>" alt="<?=$recipeUser->username ?>" title="<?=$recipeUser->username ?>">
                 By <a href="../profile/index?userId=<?=$recipe->userId?>">   <?=$recipeUser->username?>      </a>
             </div>
             
             <div class="button">
-                <button type="button" class="btn btn-info">Follow Author</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reportform">Report Post</button>
+                <?php if (!Yii::$app->user->isGuest): ?>
+                    <?php if (Yii::$app->user->identity->id == $recipe->userId ): ?>
+                        <a href ="../recipe/editrecipe?recipeId=<?= $recipeId ?>"> <button type="button" class="btn btn-info">Edit Recipe</button> </a>
+                    <?php else: ?>
+
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reportmodal">Report Post</button>
+                    <?php endif; ?>
+
+
+                <?php else: ?>
+                <?php endif; ?>
             </div>
+        <hr>
+
+
+
             
-            <div id="reportform" class="modal fade" role="dialog">
+            <div id="reportmodal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h2 class="modal-title">Report Form</h2>
                         </div>
-                      
+
+                        <?php $form1 = ActiveForm::begin(['id' => 'reportform','options' => ['enctype' => 'multipart/form-data']]); ?>
                         <div class="modal-body">
                             <p>Tell us your concern about this content so that we can review it to determine whether there has been a violation of terms of service. (Abuse of this feature is violation of terms of services.)</p>
                             <hr>
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <label for="reportuser">Report User</label>
-                                    <input type="input" class="form-control" id="reportuser" value="<?=$recipeUser->username?>" name="reportuser">
-                                </div>
-                                <div class="form-group">
-                                    <label for="reportrecipe">Report Recipe</label>
-                                    <input type="input" class="form-control" id="reportrecipe" value="<?=$recipe->recipeTitle?>" name="reportrecipe">
-                                </div>
+                                <?= $form1->field($model1, 'reportUser')->textInput(['value' => "$recipeUser->username",'readonly' => true])->label('Report User')  ?>
+
+                                <?= $form1->field($model1, 'reportRecipe')->textInput(['value' => "$recipe->recipeTitle",'readonly' => true])->label('Report Recipe')  ?>
                             
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea rows="6" class="form-control" id="description" placeholder="Describe the problem or idea." name="description"></textarea>
-                                </div>
-                            </form>
+                                <?= $form1->field($model1, 'description')->textarea(['rows' => '6','placeholder' => "Describe the problem or idea."])->label('Description')  ?>
                         </div>
                           
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default">summit</button>
+                            <?= Html::submitButton('Submit', ['class' => 'btn float-right', 'name' => 'report-button']) ?>
                         </div>
+                        <?php ActiveForm::end(); ?>
+
                     </div>
                 </div>
             </div>
+            
+
+
         </div>
     
     
@@ -90,9 +117,17 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
         <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8">
             <div class="hashtag">
 				<?php foreach($recipeTagArray as $tagId => $tagName): ?>
-					<a href ="../tagId?=<?=$tagId?>"> <span class="label label-warning"> #<?=$tagName?></span> </a>
+					<a href ="../site/?tag=<?= $tagName ?>"> <span class="label label-warning"> #<?=$tagName?></span> </a>
+
+                    <?php if(Yii::$app->user->isGuest)
+                        echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$tagId);
+                    else
+                        echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$tagId);    
+                    ?>
                 <?php endforeach;?>
             </div>
+
+
             
             <div class="description">
                 <h2>Description</h2>
@@ -130,10 +165,11 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
     
     <div class="comment">
         <h2>Comments &amp; Rating</h2>
+        <?php if ($commentUserArray !=0 ): ?>
 
         <?php foreach ($comment as $value): ?>
         <div class="media-left">
-            <img src="../userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=$commentUserArray[$value->userId]['username']?>" title="<?=$commentUserArray[$value->userId]['username']?>">
+            <img src="../img/userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=$commentUserArray[$value->userId]['username']?>" title="<?=$commentUserArray[$value->userId]['username']?>">
         </div>
         
         <div class="media-body">
@@ -155,30 +191,50 @@ $this->title = $recipe->recipeTitle.' - '.$recipeUser->username.' - BornToCook';
         </div>
         <hr>
         <?php endforeach; ?>
+
+        <?php else: ?>
+            No comment yet. Write the first comment down below.
+        <?php endif; ?>
     </div>
     
     <hr>
     
-    <div class="writecomment" id="rate">
-        <h2>What's your rating?</h2>
+	<?php if (Yii::$app->user->isGuest): ?>
+	   Comment section is not available. Please login.
+	<?php else: ?>
+
+    <div id="commentpart">
+        <?php $form2 = ActiveForm::begin(['id' => 'commentform','options' => ['enctype' => 'multipart/form-data']]); ?>
+        <h2 id = "rate" >What's your rating?</h2>
+        
+        <?= $form2->field($model2, 'recipeId')->hiddenInput(['value' => $recipeId])->label(false) ?>
+        <div class="star-rating">   
+                <span class="fa fa-star-o" data-rating="1"></span>
+                <span class="fa fa-star-o" data-rating="2"></span>
+                <span class="fa fa-star-o" data-rating="3"></span>
+                <span class="fa fa-star-o" data-rating="4"></span>
+                <span class="fa fa-star-o" data-rating="5"></span>
+                <?= $form2->field($model2, 'rating')->hiddenInput(['value' => '','class' => 'rating-value'])->label(false) ?>
+            </div>   
+
             <div class="media-left">
-                <img src="http://placehold.it/36x36" alt="<?=\Yii::$app->user->identity->username;?>" title="<?=\Yii::$app->user->identity->username;?>">
+                <img src="../img/userIcon/<?= $myInfo->userIcon ?>" alt="<?=\Yii::$app->user->identity->username;?>" title="<?=\Yii::$app->user->identity->username;?>">
             </div>
-			<form action="welcome.php" method="post">
+            
             <div class="media-body">
-			<div class="row lead">
-				<div id="stars" class="starrr"></div>
-				You gave a rating of <span id="count">0</span> star(s)
-			</div>
-                <div class="rate">
-                   <div id="stars" class="starrr"></div>
-					You gave a rating of <span id="count">0</span> star(s)
-                </div>
-                <textarea rows="3" class="form-control" id="commentbox" placeholder="Write Your comment." name="commentbox"></textarea>
+                <?= $form2->field($model2, 'comment')->textarea(['rows' => '3','placeholder' => "Write Your comment."])  ?>
             </div>
-			
-			<button type="button" class="btn btn-default pull-right">Post</button>
-			</form>
+            
+            <?= Html::submitButton('Submit', ['class' => 'btn btn-default float-right', 'name' => 'comment-button']) ?>
+
+        <?php ActiveForm::end(); ?>
     </div>
-  
+	<?php endif; ?>
+
+
+
+
+<?php endif; ?>
 </div>
+<script src="/web/js/starrating.js?t=<?=time();?>"></script>
+

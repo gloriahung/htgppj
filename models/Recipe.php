@@ -4,7 +4,7 @@ namespace app\models;
 use yii\db\ActiveRecord;
 
 
-class Report extends ActiveRecord{
+class Recipe extends ActiveRecord{
 	
 }
 
