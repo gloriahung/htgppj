@@ -113,7 +113,11 @@ AppAsset::register($this);
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="dropdown2"><i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel " id="panel1">                                
 
+<<<<<<< HEAD
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/'">Home</button>
+=======
                             <button class="btn1 btn-success" type="button" onclick="location.href='h/web/'">Home</button>
+>>>>>>> 2fcf9bbaf1fbcf7a0f96b1945046d86d52bba2f8
 
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
 
@@ -171,7 +175,10 @@ AppAsset::register($this);
                         . Html::endForm()
                         ?>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2fcf9bbaf1fbcf7a0f96b1945046d86d52bba2f8
 
                         </div>
                         </div>
