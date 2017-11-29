@@ -34,10 +34,11 @@ AppAsset::register($this);
             <div class="navbar-header navbar-left"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w0-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span></button><a class="navbar-brand" href="http://project.julab.hk/web/#">BornToCOOK</a>
-            </div>
 
-            <div class="dropdown" id="search-dropdown" >
+                <span class="icon-bar"></span></button><a class="navbar-brand" href="/web/">BornToCOOK</a>
+
+
+                <div class="dropdown" id="search-dropdown" >
                 <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
                 <span class="caret"></span></button>
                 <div class="dropdown-menu panel panel-default">
@@ -58,12 +59,15 @@ AppAsset::register($this);
                 </div>
             </div>
 
+            </div>
+
+            
             <!-- <div class="bgcolor navbar-center" id="search-included">
                 <select type="text" value="" id="tags-input" data-role="tagsinput" multiple></select>
             </div> -->
 
             <?php if(Yii::$app->user->isGuest): ?>
-            <div id="w0-collapse" class="collapse navbar-collapse navbar-right">
+            <div id="w0-collapse" class="collapse navbar-collapse navbar-right" >
                 <ul id="w1" class="navbar-nav navbar-right nav">
                     <li><a href="/web/site/signup">Sign up</a></li>
                     <li class="active"><a href="/web/site/login">Login</a></li>
@@ -71,7 +75,9 @@ AppAsset::register($this);
                         <div class="dropdown">
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown" id="dropdown2"><i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel " id="panel1">                                
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/#'">Home</button>
+
+                            <button class="btn1 btn-success" type="button" onclick="location.href='h/web/'">Home</button>
+
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
 
                         </div>
@@ -81,42 +87,95 @@ AppAsset::register($this);
 
                 </ul>
 
-                
+                 <ul id="w2" class="navbar-nav navbar-right nav">
+                <li>
+                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/signup'">Sign up</button>
+                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/login'">Login</button>
+                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/'">Home</button>
+                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'">Q&A</button>
+                </li>
+              
+
+                </ul>
+               
             </div>
-
-
-
-            <?php else: ?>
+           <?php else: ?>
             <div id="w0-collapse" class="collapse navbar-collapse" style = "float:right">
                 <ul id="w1" class="navbar-nav navbar-right nav">
                     <li>
-                        <?php echo
-                        Html::beginForm(['/site/logout'], 'post')
-                        . Html::submitButton(
-                            'Logout (' . Yii::$app->user->identity->username . ')',
-                            ['class' => 'btn btn-link logout',
-                                'id'=> 'logoutbutton']
-                        )
-                        . Html::endForm()
-                        ?>
+                         <button class="btn1 btn-success" id="profilebutton" type="button" onclick="location.href='/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>
+                        
                     </li>
                     <li>
                         <div class="dropdown">
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel" id="panel1" >                                
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/#'" >Home</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/profile/changepw'" >Change password</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/profile/subscription?userId=<?=\Yii::$app->user->identity->id;?>'" >Subscribed tag</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/profile/following?userId=<?=\Yii::$app->user->identity->id;?>'" >Following</button>
-                            <button class="btn1 btn-success" type="button" onclick="location.href='http://project.julab.hk/web/site/faq'" >FAQ</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/'" >Home</button>
+                           
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/changepw'" >Change password</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/subscription'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/following'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
+
+                            <?php if(Yii::$app->user->identity->role=="admin"): ?>
+                            <button class="adminBtn btn1 btn-success" type="button" onclick="location.href='/web/admin/index'" >Report List
+                        </button>
+                            <button class="adminBtn btn1 btn-success" type="button" onclick="location.href='/web/admin/resolved'" >Resolved Report List</button>
+                        <?php endif ?>
+
+
+                            <?php echo
+                        Html::beginForm(['/site/logout'], 'post')
+                        . Html::submitButton(
+                            'Logout (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn1 btn-success',
+                                'id'=> 'logoutbutton']
+                        )
+                        . Html::endForm()
+                        ?>
+
+
 
                         </div>
                         </div>
                     </li>
                 </ul>
+
+                <ul id="w2" class="navbar-nav navbar-right nav">
+                    <li>
+                         <?php echo
+                        Html::beginForm(['/site/logout'], 'post')
+                        . Html::submitButton(
+                            'Logout (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn1 btn-sucess',
+                                'id'=> 'logoutbutton']
+                        )
+                        . Html::endForm()
+                        ?>
+                    </li>
+                    <li>                             
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/'" >Home</button>  
+                            <button class="btn1 btn-success" id="profilebutton" type="button" onclick="location.href='/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>                         
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/changepw'" >Change password</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/subscription'" >Subscribed tag</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/following'" >Following</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
+                           
+                        
+                    </li>
+                </ul>
+
+
+
             </div>
             <?php endif;?>
+
+
+
+         
+
+
+
         </div>
      </nav>
 
@@ -131,11 +190,13 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <div class ="row">
-            <div class="col-md-1 col-xs-2" > <a href ='http://project.julab.hk/web/site/aboutus'>About Us</a></div>
-            <div class="col-md-1 col-xs-3" style='white-space:nowrap;'>  <a href ='http://project.julab.hk/web/site/contactus'>Contact Us</a></div>
-            <div class="col-md-1 col-xs-2"> <a href ='http://project.julab.hk/web/site/sitemap'>Sitemap</a></div>
-            <div class="col-md-2 col-xs-3"> <a href ='http://project.julab.hk/web/site/terms'>Terms and Conditions</a></div>
-            <div class="col-md-2 col-xs-2"> <a href ='http://project.julab.hk/web/site/privacy'>Privacy Policy</a></div>
+
+            <div class="col-md-1 col-xs-2" > <a href ='/web/site/aboutus'>About Us</a></div>
+            <div class="col-md-1 col-xs-3" style='white-space:nowrap;'>  <a href ='/web/site/contactus'>Contact Us</a></div>
+            <div class="col-md-1 col-xs-2"> <a href ='/web/site/sitemap'>Sitemap</a></div>
+            <div class="col-md-2 col-xs-3"> <a href ='/web/site/terms'>Terms and Conditions</a></div>
+            <div class="col-md-2 col-xs-2"> <a href ='/web/site/privacy'>Privacy Policy</a></div>
+
             <div class="col-md-4 col-xs-5">&copy; <?= date('Y') ?> BornToCOOK All right reserved</div>
             <div class="pull-right">By Infinite</div>
     </div>
