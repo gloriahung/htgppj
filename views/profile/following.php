@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
-                    <a href="recipe/index?recipeId=<?= $recipe->recipeId ?>">
+                    <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <img src="../img/recipeImg/<?= $recipe->imageLink ?>" class="_2di5p" alt="recipe image" title="recipe image">
