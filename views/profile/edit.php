@@ -30,12 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'icon')->fileInput() ?>
 
-                    <?= $form->field($model, 'name')->textInput(['value' => "$user->username"]) ?>    
+                    <?= $form->field($model, 'username')->textInput(['value' => "$user->username"]) ?>    
 
                     <?= $form->field($model, 'introduction')->textarea(['value' => "$user->userIntro"]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'edit-button']) ?>
+                        <?= Html::submitButton('Save', ['class' => 'btn btn-primary', 'name' => 'edit-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

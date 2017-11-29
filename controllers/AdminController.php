@@ -6,8 +6,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\AdminLoginForm;
-use app\models\SignupForm;
-use app\models\ForgetPasswordForm;
+use app\models\Report;
+use app\models\User;
+use app\models\Recipe;
 
 
 class AdminController extends Controller
@@ -20,7 +21,7 @@ class AdminController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout','login','signup','forgetpassword'],
+                'only' => ['logout','login'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -28,7 +29,7 @@ class AdminController extends Controller
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' => ['login','signup','forgetpassword'],
+                        'actions' => ['login','signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -67,14 +68,98 @@ class AdminController extends Controller
         $model = new AdminLoginForm();
         if(isset(Yii::$app->user->identity->role)){
             if(Yii::$app->user->identity->role=='admin' ||$model->load(Yii::$app->request->post()) && $model->login()){
+
                 // list report from report table
-                return $this->render('index');
+                $report = Report::findBySql('SELECT * FROM report where resolved = 0')->orderBy('time')->all();
+                $userInfo = User::findBySql('SELECT * FROM user')->all();
+				
+				$username = array(); 
+                $active = array();
+				foreach ($report as $value){ 
+					$userA = User::findBySql('SELECT * FROM user where id = '.$value->reportUserId)->one();
+					$username[$value->reportUserId] = $userA->username; 
+                    $active[$value->reportUserId] = $userA->active;
+				}
+				$reporter = array();
+				foreach ($report as $value){ 
+					$reporterA = User::findBySql('SELECT * FROM user where id = '.$value->reporterId)->one();
+					$reporter[$value->reporterId] = $reporterA->username; 
+				}
+               
+
+	
+				
+
+				$recipeTitle = array();
+				foreach ($report as $value){ 
+					$r = Recipe::findBySql('SELECT * FROM recipe where recipeId ='.$value->recipeId)->one();
+					if(empty($r)){
+						$recipeTitle[$value->recipeId] = 'Recipe deleted';
+					}else{
+						$recipeTitle[$value->recipeId] = $r->recipeTitle; 
+					}
+				}
+				$count = 1;
+				
+				
+                return $this->render('index',[
+                    'report' => $report,
+					'count' => $count,
+					'username' => $username,
+					'recipeTitle' => $recipeTitle,
+					'reporter' => $reporter,
+                    'active' => $active,
+                ]);
             }
         }
+        return $this->redirect(['admin/login']);
+    }
+	
+	    public function actionResolved()
+    {
 
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+                // list report from report table
+                $report = Report::findBySql('SELECT * FROM report where resolved = 1')->orderBy('time')->all();
+				
+				$userInfo = User::findBySql('SELECT * FROM user')->all();
+                
+                $username = array(); 
+                $active = array();
+                foreach ($report as $value){ 
+                    $userA = User::findBySql('SELECT * FROM user where id = '.$value->reportUserId)->one();
+                    $username[$value->reportUserId] = $userA->username; 
+                    $active[$value->reportUserId] = $userA->active;
+                }
+                $reporter = array();
+                foreach ($report as $value){ 
+                    $reporterA = User::findBySql('SELECT * FROM user where id = '.$value->reporterId)->one();
+                    $reporter[$value->reporterId] = $reporterA->username; 
+                }
+	
+				
+
+				$recipeTitle = array();
+				foreach ($report as $value){ 
+					$r = Recipe::findBySql('SELECT * FROM recipe where recipeId ='.$value->recipeId)->one();
+					if(empty($r)){
+						$recipeTitle[$value->recipeId] = 'Recipe deleted';
+					}else{
+						$recipeTitle[$value->recipeId] = $r->recipeTitle; 
+					}
+				}
+				$count = 1;
+				
+				
+                return $this->render('resolved',[
+                    'report' => $report,
+					'count' => $count,
+					'username' => $username,
+					'recipeTitle' => $recipeTitle,
+					'reporter' => $reporter,
+                    'active' => $active,
+                ]);
+            
+        
     }
     /**
      * Login action.
@@ -88,7 +173,7 @@ class AdminController extends Controller
         }
         $model = new AdminLoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->render('index');
+            return $this->redirect(['admin/index']);
         }
         return $this->render('login', [
             'model' => $model,
@@ -105,62 +190,29 @@ class AdminController extends Controller
         return $this->goHome();
     }
     
-    /**
-     * Displays sign up page.
-     *
-     * @return string
-     */
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup(Yii::$app->params['adminEmail']) /*&& $model->actionEmail()*/) {
-            Yii::$app->session->setFlash('signupFormSubmitted');
-            return $this->refresh();
-        }
-        else{
-            return $this->render('signup', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Displays forget password page.
-     *
-     * @return string
-     */
-
-    public function actionForgetpassword()
-    {
-        
-        $model = new ForgetPasswordForm();
-        if ($model->load(Yii::$app->request->post())){
-            if($model->forgetpassword()){
-                Yii::$app->session->setFlash('forgetpasswordFormSubmitted');
-                return $this->refresh();
-            }else{
-                Yii::$app->session->setFlash('emailDoesNotExistsError');
-                return $this->refresh();
-            }
-        }
-        else{
-            return $this->render('forgetpassword', [
-                'model' => $model,
-            ]);
-        }
-    }
-
         /**
      * Handle remove user
      *
      * @return string
      */
 
-    public function actionRemoveuser()
+    
+    public function actionBanuser()
     {
-        
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
         // get userId to be removed
 
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->update('user' , ['active' => 0],'id = "'.$userId.'"')->execute();
+            Yii::$app->session->setFlash('user-banned successed'); 
+            return $this->actionIndex();
+        }
         // check if userId not exists throw error 
             // 404, 'The requested Item could not be found.'
 
@@ -190,7 +242,19 @@ class AdminController extends Controller
 
     public function actionRemoverecipe()
     {
-        
+        if(isset($_GET['recipeId'])&& !empty($_GET['recipeId'])){
+            $recipe = htmlspecialchars($_GET['recipeId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->delete('recipe' , 'recipeId = "'.$recipe.'"')->execute();
+            Yii::$app->session->setFlash('recipe deleted'); 
+            return $this->actionIndex();
+        }
         // get recipeId to be removed
 
         // check if recipeId not exists throw error 
@@ -214,6 +278,8 @@ class AdminController extends Controller
         
     }
 
+    
+
 
                 /**
      * Handle resolved case
@@ -223,6 +289,19 @@ class AdminController extends Controller
 
     public function actionResolvedcase()
     {
+        if(isset($_GET['caseId'])&& !empty($_GET['caseId'])){
+            $case = htmlspecialchars($_GET['caseId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+
+         if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else{
+            Yii::$app->db->createCommand()->update('report' , ['resolved' => 1],'caseNo = "'.$case.'"')->execute();
+            Yii::$app->session->setFlash('command successed'); 
+            return $this->actionIndex();
+        }
         
         // get caseId to be removed
 
@@ -244,8 +323,58 @@ class AdminController extends Controller
         // HINT: use 
         // throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
         // to show error msg
-        
+      }
+
+    public function actionUnbanuser()
+    {
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+        // get userId to be removed
+
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->update('user' , ['active' => 1],'id = "'.$userId.'"')->execute();
+            Yii::$app->session->setFlash('user-banned successed'); 
+            return $this->actionResolved();
+        }
     }
 
+    public function actionRemoverecipeb()
+    {
+        if(isset($_GET['recipeId'])&& !empty($_GET['recipeId'])){
+            $recipe = htmlspecialchars($_GET['recipeId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->delete('recipe' , 'recipeId = "'.$recipe.'"')->execute();
+            Yii::$app->session->setFlash('recipe deleted'); 
+            return $this->actionResolved();
+        }
+    }
+
+    public function actionUnresolvedcase()
+    {
+        if(isset($_GET['caseId'])&& !empty($_GET['caseId'])){
+            $case = htmlspecialchars($_GET['caseId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+
+         if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else{
+            Yii::$app->db->createCommand()->update('report' , ['resolved' => 0],'caseNo = "'.$case.'"')->execute();
+            Yii::$app->session->setFlash('command successed'); 
+            return $this->actionResolved();
+        }
+    }
 }
 

@@ -10,35 +10,41 @@ use yii\web\UploadedFile;
 
 class EditForm extends Model{
 	public $icon;
-	public $name;
+	public $username;
 	public $introduction;
 
     public function rules()
     {
         return [
-        [['name', 'introduction'], 'required'],
+        [['username'], 'required'],
         [['icon'], 'file', 'skipOnEmpty' => true, 'extensions'=>'png, jpg, gif'],
-        'name' => [['name'], 'string', 'max' => 20 ,'min' => 4],
-        'introduction' => [['introduction'], 'string', 'max' => 100]];
+        'username' => [['username'], 'string', 'max' => 20 ,'min' => 4],
+        ['username','validateName'],
+        'introduction' => [['introduction'], 'string', 'max' => 100]
+        ];
     }
 
+    public function validateName($attribute,$params){
+    $user = User::findBySql("SELECT * FROM user WHERE username = '".$this->username."'")->one();
+        if(empty($user)||$user->id==(Yii::$app->user->identity->id)){
+            return true;
+        } 
+        else{
+            $this->addError($attribute, 'Username already used');
+        }
+    }
 
     public function edit()
     {
         if ($this->validate()) {
-            try{
             	$id = Yii::$app->user->identity->id; 
                
-                Yii::$app->db->createCommand()->update('user', ['username' => $this->name], 'id = "'.$id.'"')->execute();
-               
-             
-                Yii::$app->db->createCommand()->update('user', ['userIntro' => $this->introduction], 'id = "'.$id.'"')->execute();
+                Yii::$app->db->createCommand()->update('user', [
+                    'username' => $this->username,
+                    'userIntro' => $this->introduction
+                ], 'id = "'.$id.'"')->execute();
                 
                 return true;
-            }
-            catch(Exception $e){
-                 echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
         }
         return false;
     }
