@@ -39,7 +39,7 @@ class ForgetPasswordForm extends Model
 
             $randPw = substr(md5(uniqid(mt_rand(), true)), 0, 8);
 
-            Yii::$app->db->createCommand()->update('user', ['password' => $randPw], 'id = '.$user->id)->execute();
+            Yii::$app->db->createCommand()->update('user', ['password' => Yii::$app->getSecurity()->generatePasswordHash($randPw)], 'id = '.$user->id)->execute();
 
             $body = "Dear ".$user->username.",\r\n
 You have just reset your password on Borntocook.\r\n
