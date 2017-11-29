@@ -12,7 +12,7 @@ $this->title = 'Homepage';
 
         <?php if (Yii::$app->session->hasFlash('isSearch')):
 
-           echo '<div class="row hashtagRow">';
+           echo '<div class="row hashtagRow searchResultTag"> <h1>Searched Tags:</h1> ';
             if(Yii::$app->user->isGuest)
                 echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$displayTagId);
             else

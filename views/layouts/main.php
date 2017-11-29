@@ -38,26 +38,63 @@ AppAsset::register($this);
                 <span class="icon-bar"></span></button><a class="navbar-brand" href="/web/">BornToCOOK</a>
 
 
-                <div class="dropdown" id="search-dropdown" >
-                <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
-                <span class="caret"></span></button>
-                <div class="dropdown-menu panel panel-default">
-                    <span class="dropdown-header">Search Including Tags</span>
-                    <span>
-                        <div class="bgcolor navbar-center" id="search-included">
-                            <select type="text" value="" id="tags-input" data-role="tagsinput" multiple></select>
-                        </div>
-                    </span>
-                    <span class="divider"></span>
-                    <span class="dropdown-header">Search Excluding Tags</span>
-                    <span>
-                        <div class="bgcolor navbar-center" id="search-excluded">
-                            <select type="text" value="" id="xtags-input" data-role="xtagsinput" multiple></select>
-                        </div>
-                    </span> 
-                    <button class="btn btn-success" type="button" onclick="gotosearch()">Go</button>
+                <!-- <div class="dropdown" id="search-dropdown" >
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Search
+                    <span class="caret"></span></button>
+                    <div class="dropdown-menu panel panel-default">
+                        <span class="dropdown-header">Search Including Tags</span>
+                        <span>
+                            <div class="bgcolor navbar-center" id="search-included">
+                                <select type="text" value="" id="tags-input" data-role="tagsinput" multiple></select>
+                            </div>
+                        </span>
+                        <span class="divider"></span>
+                        <span class="dropdown-header">Search Excluding Tags</span>
+                        <span>
+                            <div class="bgcolor navbar-center" id="search-excluded">
+                                <select type="text" value="" id="xtags-input" data-role="xtagsinput" multiple></select>
+                            </div>
+                        </span> 
+                        <button class="btn btn-success" type="button" onclick="gotosearch()">Go</button>
+                    </div>
+                </div> -->
+
+                <!-- Trigger the modal with a button -->
+                <button type="button" id="searchBtn" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Search <i class="fa fa-search" aria-hidden="true"></i></button>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Search <i class="fa fa-search" aria-hidden="true"></i></h3>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Search Including Tags <i class="fa fa-plus-square" aria-hidden="true"></i></h4>
+                        <span>
+                            <div class="bgcolor navbar-center" id="search-included">
+                                <select type="text" value="" id="tags-input" data-role="tagsinput" multiple></select>
+                            </div>
+                        </span>
+                        <hr>
+                        <h4>Search Excluding Tags <i class="fa fa-minus-square" aria-hidden="true"></i></h4>
+                        <span>
+                            <div class="bgcolor navbar-center" id="search-excluded">
+                                <select type="text" value="" id="xtags-input" data-role="xtagsinput" multiple></select>
+                            </div>
+                        </span>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-success" type="button" onclick="gotosearch()">Start Searching</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-            </div>
 
             </div>
 
@@ -167,6 +204,11 @@ AppAsset::register($this);
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/subscription'" >Subscribed tag</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/following'" >Following</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'" >FAQ</button>
+                            <?php if(Yii::$app->user->identity->role=="admin"): ?>
+                            <button class="adminBtn btn1 btn-success" type="button" onclick="location.href='/web/admin/index'" >Report List
+                        </button>
+                            <button class="adminBtn btn1 btn-success" type="button" onclick="location.href='/web/admin/resolved'" >Resolved Report List</button>
+                        <?php endif ?>
                            
                         
                     </li>

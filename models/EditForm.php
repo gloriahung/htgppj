@@ -10,15 +10,15 @@ use yii\web\UploadedFile;
 
 class EditForm extends Model{
 	public $icon;
-	public $name;
+	public $username;
 	public $introduction;
 
     public function rules()
     {
         return [
-        [['name', 'introduction'], 'required'],
+        [['username', 'introduction'], 'required'],
         [['icon'], 'file', 'skipOnEmpty' => true, 'extensions'=>'png, jpg, gif'],
-        'name' => [['name'], 'string', 'max' => 20 ,'min' => 4],
+        'username' => [['username'], 'string', 'max' => 20 ,'min' => 4],
         'introduction' => [['introduction'], 'string', 'max' => 100]];
     }
 
@@ -29,7 +29,7 @@ class EditForm extends Model{
             try{
             	$id = Yii::$app->user->identity->id; 
                
-                Yii::$app->db->createCommand()->update('user', ['username' => $this->name], 'id = "'.$id.'"')->execute();
+                Yii::$app->db->createCommand()->update('user', ['username' => $this->username], 'id = "'.$id.'"')->execute();
                
              
                 Yii::$app->db->createCommand()->update('user', ['userIntro' => $this->introduction], 'id = "'.$id.'"')->execute();
