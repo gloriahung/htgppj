@@ -202,16 +202,6 @@ a.desc:after {
         display:none;
     }
 
-    #logoutbutton:hover{
-        background-color: #ffe0b3;
-        border-color: black;
-       
-
-    }
-
-    #logoutbutton{
-         width:197px;
-    }
 }
 
 .navbar-toggle:before {
@@ -461,8 +451,7 @@ hr {
     .btn1{
     width:49%;
 
-    ]
-
+}
 
 }
 
