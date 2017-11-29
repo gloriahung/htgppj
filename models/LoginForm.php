@@ -61,6 +61,8 @@ class LoginForm extends Model
 
             if (!$user || !$user->checkActive()) {
                 $this->addError('username', 'Your account has been blocked.');
+            }else{
+                return true;
             }
         }
     }
@@ -71,7 +73,7 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()&&$this->checkActive()) {
+        if ($this->validate() && $this->checkActive()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
