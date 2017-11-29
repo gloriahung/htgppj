@@ -609,7 +609,8 @@ span.twitter-typeahead .tt-suggestion:last-child {
 }
 
 .hashtagRow .hashtag {
-    display: inline;
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .hashtagRow .label{
@@ -620,4 +621,8 @@ span.twitter-typeahead .tt-suggestion:last-child {
 .hashtagRow .label a{
     text-decoration: none;
     color: white;
+}
+
+.hashtag .label span {
+    font-size: 15px;
 }
