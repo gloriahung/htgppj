@@ -187,6 +187,10 @@ class ProfileController extends Controller
 
         
 
+
+
+
+
         return $this->render('index', [
             'tag' => $recipesTagArray,
             'userInfo' => $userInfo,
@@ -268,7 +272,6 @@ class ProfileController extends Controller
     //     ]);
     // }
 
-
     public function actionFollowsub(){
          if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $userId = htmlspecialchars($_GET['userId']);
@@ -280,6 +283,11 @@ class ProfileController extends Controller
 
         $numOfFol = 0;
 
+    	if ($userInfo->followingUserId == null ){
+            $followingArray[] = null; 
+            $userIcon[] = null;
+            $username[] = null;
+        } else{
         $followingUserIdArray = explode(",", $userInfo->followingUserId);
         foreach ($followingUserIdArray as $followingId) {
                 $followingInfo = User::findBySql('SELECT * FROM user where id = '.$followingId)->one();
@@ -291,8 +299,12 @@ class ProfileController extends Controller
 
                 $numOfFol++;
             }
-        $numOfSub = 0;
-        if ($userInfo->subscribeTagId!= null){
+        }
+
+        $numOfSub = 0; 
+        if($userInfo->subscribeTagId == null){
+            $tagArray[] = null;
+        }else{
         $tagIdArray = explode(",", $userInfo->subscribeTagId);
             foreach ($tagIdArray as $tagId) {
                 $tag = Tag::findBySql('SELECT tag FROM tag WHERE tagId ='.$tagId)->one();
@@ -300,15 +312,7 @@ class ProfileController extends Controller
                 $numOfSub++;
             }
         }
-        if ($userInfo->followingUserId == null ){
-            $numOfFol = 0;
-            $followingArray[] = null; 
-        } 
-        if($userInfo->subscribeTagId == null){
-            $numOfSub = 0;
-            $tagArray[] = null;
-        }
-
+    	
         return $this->render('followsub',['userIcon'=>$userIcon, 'username'=>$username, 'followingArray'=>$followingArray, 'tagArray'=>$tagArray, 'numOfSub'=>$numOfSub, 'numOfFol'=>$numOfFol]);
     }
 
@@ -322,7 +326,7 @@ class ProfileController extends Controller
         
 
         $numOfFol = 0;
-
+;
         $followingUserIdArray = explode(",", $userInfo->followingUserId);
         foreach ($followingUserIdArray as $followingId) {
                 $numOfFol++;
@@ -461,10 +465,11 @@ class ProfileController extends Controller
                         Yii::$app->db->createCommand()->update('user', ['userIcon' => $model->icon], 'id = "'.$id.'"')->execute();
                         // file is uploaded successfully
                     }
+                    Yii::$app->session->setFlash('editFormSubmitted');
+                    return $this->refresh();
                 }
             
-            Yii::$app->session->setFlash('editFormSubmitted');
-            return $this->refresh();
+            
             
         }
         return $this->render('edit', [

@@ -106,8 +106,7 @@ $this->title = 'Profile - cook';
             </div>
         </div>
     </div>
-  
-</div>
+
 
 <script>
     function fnBookmark(userid,usinguserid){

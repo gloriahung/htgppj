@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Following';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
@@ -49,9 +48,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </p>
                                 <p class="info">
                                     By <a href="profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId]?> </a>
+                                    <div class="row hashtagRow"> 
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
-                                        <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
+                              
+                                      <?php if(Yii::$app->user->isGuest)
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$tagId);
+                                            else
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$tagId);    
+                                       ?>
                                     <?php endforeach;?>
+                                    </div>
                                 </p>
                             </div>
                         </div>

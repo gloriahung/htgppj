@@ -36,7 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if ($numOfSub != 0): ?>
     <?php foreach($tagArray as $tagId => $tag): ?>
       <div class="col-xs-4">
-        <a href="../index?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tag ?></span></a>
+        <div class="row hashtagRow">
+          <?php 
+            echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$tagId);    
+          ?>
+        </div>
+<!--         <a href="../index?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tag ?></span></a> -->
         </div>
     <?php endforeach;?>
     <?php endif; ?>

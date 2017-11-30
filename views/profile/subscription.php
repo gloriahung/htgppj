@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 
-$this->title = '[User Name] - cook';
+$this->title = 'Subscription';
 
 ?>
 
@@ -20,6 +20,8 @@ $this->title = '[User Name] - cook';
                 $avgRating = $recipe->rating / $recipe->numOfRate;
                 else
                 $avgRating = 0;
+
+            
             ?>
                 <div class="col-sm-6 col-md-4 each-recipe">
                     <a href="/web/recipe/index?recipeId=<?= $recipe->recipeId ?>">
@@ -51,9 +53,17 @@ $this->title = '[User Name] - cook';
                                 </p>
                                 <p class="info">
                                     By <a href="/web/profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>
+                                    <div class="row hashtagRow"> 
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
-                                        <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a>
+                              
+                                      <?php if(Yii::$app->user->isGuest)
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$tagId);
+                                            else
+                                                echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?userId='.Yii::$app->user->identity->id.'&tagIds='.$tagId);    
+                                       ?>
+                                       <!--  <a href="?tagId=<?= $tagId ?>"><span class="label label-default">#<?= $tagName ?></span></a> -->
                                     <?php endforeach;?>
+                                    </div>
                                 </p>
                             </div>
                         </div>

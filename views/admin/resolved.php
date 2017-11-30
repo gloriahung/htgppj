@@ -10,8 +10,7 @@ $this->title = 'Homepage';
 
     <div class="body-content">
 
-
-        <h1>Report</h1>
+        <h1>Resolved List</h1>
 
         <table class="table table-hover" id= "table">
 			<tr>
@@ -21,7 +20,7 @@ $this->title = 'Homepage';
 				<td>Description</td>
 				<td>Reporter Name</td>
 				<td>Time</td>
-				<td>Handle</td>
+				<td>Handled</td>
 			</tr>
 			<?php foreach($report as $key => $reports): ?>
 			<tr class="active">
@@ -33,7 +32,7 @@ $this->title = 'Homepage';
 						<a href= "unbanuser?userId=<?= $reports->reportUserId ?>"><img src="../img/profileImg/unbanbutton.png" class="img-rounded" alt="unban button" title="unban button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a>
 						<?php endif; ?>
 						</td>
-				<td><?= $recipeTitle[$reports->recipeId]?><?php if ($recipeTitle[$reports->recipeId]!='Recipe deleted'):?><a href= "removerecipe?recipeId=<?= $reports->recipeId ?>"><img src="../img/profileImg/banbutton.jpg" class="img-rounded" alt="delete button" title="delete button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "><?php endif; ?></a></td>
+				<td><?= $recipeTitle[$reports->recipeId]?><?php if ($recipeTitle[$reports->recipeId]!='Recipe deleted'):?><a href= "removerecipeb?recipeId=<?= $reports->recipeId ?>"><img src="../img/profileImg/banbutton.jpg" class="img-rounded" alt="delete button" title="delete button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "><?php endif; ?></a></td>
 				<td><?= $reports->description?></td>
 				<td><?= $reporter[$reports->reporterId]?></td>
 				<td><?= $reports->time?></td>
