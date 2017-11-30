@@ -6,15 +6,15 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 
-$this->title = 'Write a new Recipe - BornToCook';
+$this->title = 'Write a new Recipe';
 ?>
 <div class="container-fluid" style='width:80%'>
-  <h1>Posting a new recipe</h1>
+  <h1><?= Html::encode($this->title) ?></h1>
 
         <?php if (Yii::$app->session->hasFlash('postFormSubmitted')): ?>
 
             <div class="alert alert-success">
-                Posted.
+                New recipe posted.
             </div>
 
         <?php else: ?>
