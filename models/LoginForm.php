@@ -53,13 +53,27 @@ class LoginForm extends Model
         }
     }
 
+
+    public function checkActive()
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+
+            if (!$user || !$user->checkActive()) {
+                $this->addError('username', 'Your account has been blocked.');
+            }else{
+                return true;
+            }
+        }
+    }
+
     /**
      * Logs in a user using the provided username and password.
      * @return bool whether the user is logged in successfully
      */
     public function login()
     {
-        if ($this->validate()) {
+        if ($this->validate() && $this->checkActive()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;

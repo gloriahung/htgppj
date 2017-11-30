@@ -8,12 +8,6 @@ body {
     letter-spacing:0.4px;
 }
 
-/*@media (max-width: 767px){
-    html,
-    body {
-        font-family: "Coming Soon";
-    }
-}*/
 
 .wrap {
     min-height: 100%;
@@ -23,7 +17,6 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
-    /*background-color: #FFF8E1;*/
 }
 
 /*background image transparents*/
@@ -34,7 +27,7 @@ body {
 .wrap::after {
     content: "";
     background: url(https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/27911/1160/772/m1/fpnw/wm0/1-.jpg?1373984858&s=785bdbec2c9035f29c7651ffb3da25bc);
-    opacity: 0.2;
+    opacity: 0.09;
     top: 0;
     left: 0;
     bottom: 0;
@@ -136,6 +129,8 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
@@ -143,7 +138,12 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+    #w1{
+        display:none;
+    }
 }
+ 
+
 
 .nav > li > form > button.logout:focus,
 .nav > li > form > button.logout:hover {
@@ -161,6 +161,12 @@ a.desc:after {
 
 .navbar a{
     color: black;
+}
+
+.navbar-header .navbar-brand{
+    font-size: 25px;
+    text-shadow: 2px 2px 5px #41403e;
+    color: #f5f5f5;
 }
 
 @media (min-width: 768px){
@@ -190,6 +196,11 @@ a.desc:after {
         background-color: #286090;
         border-color: #204d74;
     }
+
+    #w2{
+        display:none;
+    }
+
 }
 
 .navbar-toggle:before {
@@ -222,7 +233,7 @@ a.desc:after {
 }
 
 .btn1{
-    width:160px;
+    width:197px;
 
     background-color: #FFE0B2;
     border:solid 2px #41403E;
@@ -315,15 +326,22 @@ a.desc:after {
 
 }
 
-#logoutbutton{
+#profilebutton{
     height:36px;
     padding-top:1px;
+
 }
 
 #search-dropdown .dropdown-toggle{
     margin-top:7px;
      height:36px;
      padding-top:2px;
+}
+
+#searchBtn{
+    margin-top:7px;
+    height:36px;
+    padding-top:2px;
 }
 
 .btn2{
@@ -428,6 +446,17 @@ hr {
     .search-dropdown .hashtag a{
         font-size: 15px;
     }
+
+    #logoutbutton{
+        width:399px;
+        text-align: center;
+        
+
+    }
+    .btn1{
+        width:49%;
+    }
+
 }
 
 
@@ -549,57 +578,15 @@ span.twitter-typeahead .tt-suggestion:last-child {
     box-shadow: 9px 8px 5px rgba(121, 121, 121, 0.11);
 }
 
-
-/*tooltip*/
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
- 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.showtooltip .tooltiptext {
-    visibility: visible;
-}
-
-.tooltip .tooltiptext {
-    width: 120px;
-    top: 100%;
-    left: 50%; 
-    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
-}
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%;  /* At the top of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-}
-
 .hashtagRow{
     margin-bottom: 20px;
     margin-left: 2px;
 
+}
+
+.hashtagRow .hashtag {
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .hashtagRow .label{
@@ -610,4 +597,47 @@ span.twitter-typeahead .tt-suggestion:last-child {
 .hashtagRow .label a{
     text-decoration: none;
     color: white;
+}
+
+.hashtag .label span {
+    font-size: 15px;
+}
+
+.searchResultTag .label{
+    font-size: 20px;
+}
+
+  
+.adminBtn{
+    background-color: #f5f5f5;
+}
+
+.modal-backdrop {
+    z-index: 1;
+}
+
+#masonry-rows .panel {
+    display: block;
+    -webkit-filter: grayscale(00%);
+    -moz-filter: grayscale(00%);
+    -o-filter: grayscale(00%);
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    -ms-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+
+}
+
+#masonry-rows .panel:hover {      
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);    
+}
+
+.site-login .form-horizontal .form-group{
+    margin-right: 0px;
+    margin-left: 0px;
 }
