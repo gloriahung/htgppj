@@ -13,9 +13,15 @@ $this->title = 'Profile - cook';
   <div class="row">
     <br><br>
     <div class="col-md-5">
+      <?php if($userInfo->userIcon != null): ?>
       <div class="profilepic" >
         <img src="../img/userIcon/<?= $userInfo->userIcon ?>" class="img-rounded" alt="Profile picture" title="Profile picture">
       </div>
+    <?php else: ?>
+      <div class="profilepic" >
+        <img src="../img/userIcon/default.jpg" class="img-rounded" alt="Profile picture" title="Profile picture">
+      </div>
+    <?php endif; ?>
      </div>
   <div class="col-md-7 text-left">
      <h1><?= $userInfo->username ?>&nbsp&nbsp 

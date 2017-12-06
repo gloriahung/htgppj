@@ -41,8 +41,8 @@ $this->title = 'Write a new Recipe';
             
             
                 <div class="col-xs-0 col-sm-8 col-md-8 col-lg-8">
-                    <?= $form->field($model, 'ingredient')->textarea(['rows' => '6','placeholder' => "Seperate each ingredient with a comma."])->label('Ingredients')  ?>
-                    <?= $form->field($model, 'direction')->textarea(['rows' => '8','placeholder' => "Seperate each step with a comma.."])->label('Directions')  ?>
+                    <?= $form->field($model, 'ingredient')->textarea(['rows' => '6','placeholder' => "Put each ingredient on its own lines."])->label('Ingredients')  ?>
+                    <?= $form->field($model, 'direction')->textarea(['rows' => '8','placeholder' => "Put each step on its own lines."])->label('Directions')  ?>
                     <?= $form->field($model, 'hashtags')->textInput(['data-role' => "tagsinput",'placeholder' => "Press Enter-key to add a tag."])->label('Hashtags')  ?>
 
                     <div class="form-group">

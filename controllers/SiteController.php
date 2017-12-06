@@ -142,12 +142,12 @@ class SiteController extends Controller
 
         $recipes = $query
             ->where($where)
-            ->orderBy('recipeId')
+            ->orderBy(['recipeId'=>SORT_DESC])
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
 
-        $recipesObject = Recipe::findBySql('SELECT * FROM recipe')->where($where)->orderBy('recipeId')->all();
+        $recipesObject = Recipe::findBySql('SELECT * FROM recipe')->where($where)->orderBy(['recipeId'=>SORT_DESC])->all();
 
 
         // get user name for each recipe
@@ -187,7 +187,6 @@ class SiteController extends Controller
             'user' => $recipesUserArray,
             'recipes' => $recipes,
             'pagination' => $pagination,
-            // 'displayTagId' => $displayTagId,
         ]);
 
     }
@@ -397,6 +396,11 @@ class SiteController extends Controller
     public function actionPrivacy()
     {
             return $this->render('privacy');
+    }
+
+    public function actionFaq()
+    {
+            return $this->render('faq');
     }
 }
 

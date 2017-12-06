@@ -105,7 +105,7 @@ AppAsset::register($this);
                     <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/signup'">Sign up</button>
                     <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/login'">Login</button>
                     <button class="btn1 btn-success" type="button" onclick="location.href='/web/'">Home</button>
-                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'">Q&A</button>
+                    <button class="btn1 btn-success" type="button" onclick="location.href='/web/site/faq'">FAQ</button>
                 </li>
               
 
@@ -124,7 +124,7 @@ AppAsset::register($this);
                         <button class="btn2 btn-success dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-bars" aria-hidden="true"></i><span class="caret"></span></button>
                         <div class="dropdown-menu panel" id="panel1" >                                
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/'" >Home</button>
-                           
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/recipe/postform'" >Post recipe</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/changepw'" >Change password</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/subscription'" >Subscribed tag</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/following'" >Following</button>
@@ -165,7 +165,8 @@ AppAsset::register($this);
                     </li>
                     <li>                             
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/'" >Home</button>  
-                            <button class="btn1 btn-success" id="profilebutton" type="button" onclick="location.href='/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>                         
+                            <button class="btn1 btn-success" id="profilebutton" type="button" onclick="location.href='/web/profile/index?userId=<?=\Yii::$app->user->identity->id;?>'" >User profile</button>
+                            <button class="btn1 btn-success" type="button" onclick="location.href='/web/recipe/postform'" >Post recipe</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/changepw'" >Change password</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/subscription'" >Subscribed tag</button>
                             <button class="btn1 btn-success" type="button" onclick="location.href='/web/profile/following'" >Following</button>
@@ -209,8 +210,8 @@ AppAsset::register($this);
             <div class="col-md-1 col-xs-2" > <a href ='/web/site/aboutus'>About Us</a></div>
             <div class="col-md-1 col-xs-3" style='white-space:nowrap;'>  <a href ='/web/site/contactus'>Contact Us</a></div>
             <div class="col-md-1 col-xs-2"> <a href ='/web/site/sitemap'>Sitemap</a></div>
-            <div class="col-md-2 col-xs-3"> <a href ='/web/site/terms'>Terms and Conditions</a></div>
             <div class="col-md-2 col-xs-2"> <a href ='/web/site/privacy'>Privacy Policy</a></div>
+            <div class="col-md-2 col-xs-3"> <a href ='/web/site/terms'>Terms and Conditions</a></div>
 
             <div class="col-md-4 col-xs-5">&copy; <?= date('Y') ?> BornToCOOK All right reserved</div>
             <div class="pull-right">By Infinite</div>

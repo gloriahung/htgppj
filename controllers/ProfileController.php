@@ -68,23 +68,17 @@ class ProfileController extends Controller
     {
         if(isset($_GET['userId'])&& !empty($_GET['userId'])){
             $userId = htmlspecialchars($_GET['userId']);
-        }
-        else{
+        }else if(isset(\Yii::$app->user->identity->id)&& !empty(\Yii::$app->user->identity->id)){
+            $userId = \Yii::$app->user->identity->id;
+        }else{
             throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
         }
 
         $userInfo = User::findBySql('SELECT * FROM user WHERE id ='.$userId)->one();
 
         $numOfPost = 0;
-        // $postedRecipeIdArray = explode(",", $userInfo->postedRecipeId);
-        // foreach ($postedRecipeIdArray as $postedRecipeId) {
-        //         $postedInfo = User::findBySql('SELECT postedRecipeId FROM user ')->where(['id'=>$postedRecipeId])->one();
-        //         $postedIdArray[$postedRecipeId] = $postedInfo->postedRecipeId;
-        //         $numOfPost += 1;
-        //     }
+        
 
-        // $recipes = Recipe::findBySql('SELECT * FROM recipe')->where('recipeId'==$postedIdArray)->all();
-        // $recipes = Recipe::findBySql('SELECT * FROM recipe')->where(['userId'=>$userInfo->id])->all();
         $recipes = Recipe::findBySql('SELECT * FROM recipe WHERE userId ='.$userInfo->id)->all();
 
         // get tag name used for each recipe
@@ -162,34 +156,6 @@ class ProfileController extends Controller
         $newfollowing = implode(",",$deletedfollowing);
         }
 
-        // $delupdatefollowing = Yii::$app->db->createCommand()->update('user' , ['followingUserId' => $newfollowing],'id = "'.$usinguserId.'"')->execute();
-
-        // $updatefollowing =Yii::$app->db->createCommand()->update('user' , ['followingUserId' => $addfollowingUserId],'id = "'.$usinguserId.'"')->execute();;     
-
-    //     if($_GET['followed'] == "0")
-    //     {
-    //         // this has the value MSN89
-    //         $sql = "UPDATE User
-    //                 SET followingUser='$id'
-    //                 WHERE User_Id=3";
-
-    // //then execute the query
-
-
-    //     }
-    //     if($_GET['followed'] == "1")
-    //     { 
-    //         $sql = "Yii::$app->db->createCommand()->update('user' , ['followingUserId' => $newfollowing],'id = "'$usinguserId'"')->execute();";
-
-    // //then execute the query
-
-    //     }
-
-        
-
-
-
-
 
         return $this->render('index', [
             'tag' => $recipesTagArray,
@@ -199,78 +165,12 @@ class ProfileController extends Controller
             'numOfSub'=>$numOfSub,
             'numOfFol'=>$numOfFol,
             'followed'=>$followed,
-            // 'updatefollowing'=>$updatefollowing,
-            // 'addfollowingUserId'=>$addfollowingUserId,
             'usinguserId'=>$usinguserId
 
         ]);
     }
 
-    // /**
-    //  * Displays homepage.
-    //  *
-    //  * @return string
-    //  */
-    // public function actionIndexedit()
-    // {
-    //     if(isset($_GET['userId'])&& !empty($_GET['userId'])){
-    //         $userId = htmlspecialchars($_GET['userId']);
-    //     }
-
-    //     $userInfo = User::findBySql('SELECT * FROM user WHERE id ='.$userId)->one();
-
-    //     $numOfPost = 0;
-    //     // $postedRecipeIdArray = explode(",", $userInfo->postedRecipeId);
-    //     // foreach ($postedRecipeIdArray as $postedRecipeId) {
-    //     //         $postedInfo = User::findBySql('SELECT postedRecipeId FROM user ')->where(['id'=>$postedRecipeId])->one();
-    //     //         $postedIdArray[$postedRecipeId] = $postedInfo->postedRecipeId;
-    //     //         $numOfPost += 1;
-    //     //     }
-
-    //     // $recipes = Recipe::findBySql('SELECT * FROM recipe')->where('recipeId'==$postedIdArray)->all();
-    //     // $recipes = Recipe::findBySql('SELECT * FROM recipe')->where(['userId'=>$userInfo->id])->all();
-    //     $recipes = Recipe::findBySql('SELECT * FROM recipe WHERE userId ='.$userInfo->id)->all();
-
-    //     // get tag name used for each recipe
-    //     $recipesTagArray = array();
-    //     foreach ($recipes as $key => $recipe) {
-    //         $tagIdArray = explode(",", $recipe->tagIds);
-    //         foreach ($tagIdArray as $tagId) {
-    //             $tag = Tag::findBySql('SELECT tag FROM tag WHERE tagId = '.$tagId)->one();
-    //             $recipesTagArray[$recipe->recipeId][$tagId] = $tag->tag;
-    //         }
-    //         $numOfPost++;
-    //     }
-
-       
-    //     $numOfFol = 0;
-    //     $followingUserIdArray = explode(",", $userInfo->followingUserId);
-    //     foreach ($followingUserIdArray as $followingId) {
-    //             $numOfFol += 1;
-    //         }
-    //     $tagIdArray = explode(",", $userInfo->subscribeTagId);
-    //     $numOfSub = 0;
-    //         foreach ($tagIdArray as $tagId) {
-    //             $numOfSub += 1;
-    //         }
-
-    //     if ($userInfo->followingUserId == null ){
-    //         $numOfFol = 0;
-    //     } 
-    //     if($userInfo->subscribeTagId == null){
-    //         $numOfSub = 0;
-    //     }
-
-
-    //     return $this->render('indexedit', [
-    //         'tag' => $recipesTagArray,
-    //         'userInfo' => $userInfo,
-    //         'recipes' => $recipes,
-    //         'numOfPost'=>$numOfPost,
-    //         'numOfSub'=>$numOfSub,
-    //         'numOfFol'=>$numOfFol
-    //     ]);
-    // }
+  
 
     public function actionFollowsub(){
          if(isset($_GET['userId'])&& !empty($_GET['userId'])){
@@ -388,19 +288,6 @@ class ProfileController extends Controller
             ->orderBy('recipeId')
             ->all();
 
-
-        // $tagIdArray = explode(",", $userInfo->subscribeTagId);
-        // $numOfSub = 0;
-        //     foreach ($tagIdArray as $tagId) {
-        //         $tag = Tag::findBySql('SELECT tag FROM tag WHERE tagId = '.$tagId)->one();
-        //         $tagArray[$tagId] = $tag->tag;
-        //         $numOfSub++;
-        //     }
-        // $recipeInfo = Recipe::findBySql('SELECT * FROM recipe')->all();
-
-        // $sub = implode(" OR tagIds = ",$tagIdArray);
-
-        // $recipes = Recipe::findBySql('SELECT * FROM recipe where tagIds = '.$sub)->orderBy('recipeId')->all();
 
         $recipesTagArray = array();
         foreach ($recipes as $key => $recipe) {

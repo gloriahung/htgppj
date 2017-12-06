@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="alert alert-success">
                 Recipe edit succeed.
+                <BR>
+                <a href="../recipe/index?recipeId=<?=$recipe->recipeId?>">Return to recipe.</a>
             </div>
 
         <?php else: ?>

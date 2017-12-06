@@ -115,10 +115,8 @@ $this->params['breadcrumbs'][] = $this->title;
     
     
         <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8">
-            <div class="hashtag">
+            <div class="row hashtagRow">
                 <?php foreach($recipeTagArray as $tagId => $tagName): ?>
-                    <a href ="../site/?tag=<?= $tagName ?>"> <span class="label label-warning"> #<?=$tagName?></span> </a>
-
                     <?php if(Yii::$app->user->isGuest)
                         echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/web/site/getsubscriblebtn?tagIds='.$tagId);
                     else
@@ -138,10 +136,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="ingredient">
                         <h2>Ingredient</h2>
                         <ul type="bullet">
-                            <?php $ingredientArray = explode(",", $recipe->ingredient);
+                            <?php $ingredientArray = explode("\r\n", $recipe->ingredient);
                                     foreach ($ingredientArray as $ingredient):
                             ?>
                             <li><?= $ingredient?></li>
+                            <BR>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -150,10 +149,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="direction">
                         <h2>Directions</h2>
                         <ol type="number" style='word-wrap: break-word'>
-                            <?php $directionArray = explode(",", $recipe->direction);
+                            <?php $directionArray = explode("\r\n", $recipe->direction);
                                     foreach ($directionArray as $direction):
                             ?>
                             <li><?= $direction?></li>
+                            <BR>
                             <?php endforeach; ?>
                         </ol>
                     </div>      
@@ -222,7 +222,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             
             <div class="media-body">
-                <?= $form2->field($model2, 'comment')->textarea(['rows' => '3','placeholder' => "Write Your comment."])  ?>
+                <?= $form2->field($model2, 'comment')->textarea(['rows' => '3','placeholder' => "Write your comment."])  ?>
             </div>
             
             <?= Html::submitButton('Submit', ['class' => 'btn btn-default float-right', 'name' => 'comment-button']) ?>
@@ -237,3 +237,4 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php endif; ?>
 </div>
 <script src="/web/js/starrating.js?t=<?=time();?>"></script>
+<script src="/web/js/subscribe.js?t=<?=time();?>"></script>
