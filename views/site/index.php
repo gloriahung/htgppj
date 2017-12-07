@@ -42,7 +42,7 @@ $this->title = 'Homepage';
                                 <br>
                             </div>    
                             <div class="panel-footer">
-                            <h4><?= $recipe->recipeTitle ?></h4>
+                            <h4><?= Html::encode($recipe->recipeTitle) ?></h4>
                                 <div class="rating">
                                     <?php 
                                     $intRating = floor($avgRating);
@@ -60,7 +60,7 @@ $this->title = 'Homepage';
                                     <?php endfor;?>
                                 </div>
                                 <p class="description">
-                                    <?= $recipe->description ?>
+                                    <?= Html::encode($recipe->description) ?>
                                 </p>
                                 <p class="info">
                                     By <a href="/web/profile/index?userId=<?= $recipe->userId ?>"> <?= $user[$recipe->recipeId] ?> </a>

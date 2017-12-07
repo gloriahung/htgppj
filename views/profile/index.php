@@ -24,7 +24,7 @@ $this->title = 'Profile - cook';
     <?php endif; ?>
      </div>
   <div class="col-md-7 text-left">
-     <h1><?= $userInfo->username ?>&nbsp&nbsp 
+     <h1><?= Html::encode($userInfo->username) ?>&nbsp&nbsp 
             <?php if ($followed == 0): ?>
               <button type="button" id="afollowbutton" class="follow btn btn-default btn-sm" onClick ="fnBookmark(<?= $userInfo->id ?>,<?= $usinguserId?>)">follow</button> 
             <?php else: ?>
@@ -47,7 +47,7 @@ $this->title = 'Profile - cook';
         <br>
       </div>
       <br>
-      <p><?= $userInfo->userIntro ?></p>
+      <p><?= Html::encode($userInfo->userIntro) ?></p>
       <br>
     </div>
     
@@ -70,7 +70,7 @@ $this->title = 'Profile - cook';
                                 <br>
                             </div>    
                             <div class="panel-footer">
-                            <h4><?= $recipe->recipeTitle ?></h4>
+                            <h4><?= Html::encode($recipe->recipeTitle) ?></h4>
                                 <div class="rating">
                                     <?php 
                                     $intRating = floor($avgRating);
@@ -88,10 +88,10 @@ $this->title = 'Profile - cook';
                                     <?php endfor;?>
                                 </div>
                                 <p class="description">
-                                    <?= $recipe->description ?>
+                                    <?= Html::encode($recipe->description) ?>
                                 </p>
                                 <p class="info">
-                                    By <a href="index?userId=<?= $recipe->userId ?>"> <?= $userInfo->username ?> </a> 
+                                    By <a href="index?userId=<?= $recipe->userId ?>"> <?= Html::encode($userInfo->username) ?> </a> 
                                     <div class="row hashtagRow"> 
                                     <?php foreach($tag[$recipe->recipeId] as $tagId => $tagName): ?>
                               

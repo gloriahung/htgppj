@@ -17,7 +17,7 @@ class CommentForm extends Model{
 			[['recipeId','rating','comment'],'required'],
 
 			['rating', 'integer', 'max' => 10],
-			['comment','string', 'max' => 200],
+			['comment','string', 'max' => 500],
 		];
 
 	}

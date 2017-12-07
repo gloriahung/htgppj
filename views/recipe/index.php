@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="recipe-photo">
-                <img src="../img/recipeImg/<?= $recipe->imageLink ?>"  alt="<?=$recipe->recipeTitle ?>" title="<?=$recipe->recipeTitle ?>">
+                <img src="../img/recipeImg/<?= $recipe->imageLink ?>"  alt="<?=Html::encode($recipe->recipeTitle) ?>" title="<?=Html::encode($recipe->recipeTitle) ?>">
             </div>
         
             <div class="rating">
@@ -58,8 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             
             <div class="Author">
-                <img src="../img/userIcon/<?= $recipeUser->userIcon ?>" alt="<?=$recipeUser->username ?>" title="<?=$recipeUser->username ?>">
-                By <a href="../profile/index?userId=<?=$recipe->userId?>">   <?=$recipeUser->username?>      </a>
+                <img src="../img/userIcon/<?= $recipeUser->userIcon ?>" alt="<?=Html::encode($recipeUser->username) ?>" title="<?=Html::encode($recipeUser->username) ?>">
+                By <a href="../profile/index?userId=<?=$recipe->userId?>">   <?=Html::encode($recipeUser->username)?>      </a>
             </div>
             
             <div class="button">
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <div class="description">
                 <h2>Description</h2>
-                <p style='word-wrap: break-word'> <?=$recipe->description ?> </p>
+                <p style='word-wrap: break-word'> <?=Html::encode($recipe->description) ?> </p>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php $ingredientArray = explode("\r\n", $recipe->ingredient);
                                     foreach ($ingredientArray as $ingredient):
                             ?>
-                            <li><?= $ingredient?></li>
+                            <li><?= Html::encode($ingredient)?></li>
                             <BR>
                             <?php endforeach; ?>
                         </ul>
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php $directionArray = explode("\r\n", $recipe->direction);
                                     foreach ($directionArray as $direction):
                             ?>
-                            <li><?= $direction?></li>
+                            <li><?= Html::encode($direction)?></li>
                             <BR>
                             <?php endforeach; ?>
                         </ol>
@@ -169,11 +169,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php foreach ($comment as $value): ?>
         <div class="media-left">
-            <img src="../img/userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=$commentUserArray[$value->userId]['username']?>" title="<?=$commentUserArray[$value->userId]['username']?>">
+            <img src="../img/userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=Html::encode($commentUserArray[$value->userId]['username'])?>" title="<?=Html::encode($commentUserArray[$value->userId]['username'])?>">
         </div>
         
         <div class="media-body">
-            <a href="[link of commenter profile]"> <?=$commentUserArray[$value->userId]['username']?> </a>
+            <a href="../profile/index?userId=<?=$value->userId?>"> <?=Html::encode($commentUserArray[$value->userId]['username'])?> </a>
             <div class="rating">
                 <?php
                 $rating = $value->rating;
@@ -187,7 +187,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <span class="glyphicon glyphicon-star-empty"></span>
                 <?php endfor;?>
             </div>
-            <?=$value->comment ?>
+            <?=Html::encode($value->comment) ?>
         </div>
         <hr>
         <?php endforeach; ?>
@@ -218,7 +218,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>   
 
             <div class="media-left">
-                <img src="../img/userIcon/<?= $myInfo->userIcon ?>" alt="<?=\Yii::$app->user->identity->username;?>" title="<?=\Yii::$app->user->identity->username;?>">
+                <img src="../img/userIcon/<?= $myInfo->userIcon ?>" alt="<?=Html::encode(\Yii::$app->user->identity->username);?>" title="<?=Html::encode(\Yii::$app->user->identity->username);?>">
             </div>
             
             <div class="media-body">

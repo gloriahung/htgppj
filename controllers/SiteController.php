@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 use Yii;
+use yii\helpers\Html;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -323,9 +324,9 @@ class SiteController extends Controller
                     $toFollow = '-';
                 else
                     $toFollow = '+';
-                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a> <span class="tag'.$tagInfo->tagId.'" onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.$tagInfo->tag.'\',this)">'.$toFollow.'</span> </span>';
+                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.Html::encode($tagInfo->tag).' </a> <span class="tag'.$tagInfo->tagId.'" onclick="fnSubscribe('.$userId.','.$tagInfo->tagId.',\''.Html::encode($tagInfo->tag).'\',this)">'.$toFollow.'</span> </span>';
             }else{
-                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.$tagInfo->tag.' </a></span>';
+                echo '<span class="label label-default"><a href ="/web/?tagId='.$tagInfo->tagId.'">  #'.Html::encode($tagInfo->tag).' </a></span>';
             }
         }
         echo '</div>';

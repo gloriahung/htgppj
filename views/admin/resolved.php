@@ -25,16 +25,16 @@ $this->title = 'Homepage';
 			<?php foreach($report as $key => $reports): ?>
 			<tr class="active">
 				<td><?= $count++ ?></td>
-				<td><?= $username[$reports->reportUserId]?>
+				<td><?= Html::encode($username[$reports->reportUserId])?>
 					<?php if ($active[$reports->reportUserId] != 0):?>
 						<a href= "banuser?userId=<?= $reports->reportUserId ?>"><img src="../img/profileImg/banbutton.jpg" class="img-rounded" alt="ban button" title="ban button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a>
 						<?php else: ?>
 						<a href= "unbanuser?userId=<?= $reports->reportUserId ?>"><img src="../img/profileImg/unbanbutton.png" class="img-rounded" alt="unban button" title="unban button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a>
 						<?php endif; ?>
 						</td>
-				<td><?= $recipeTitle[$reports->recipeId]?><?php if ($recipeTitle[$reports->recipeId]!='Recipe deleted'):?><a href= "removerecipeb?recipeId=<?= $reports->recipeId ?>"><img src="../img/profileImg/banbutton.jpg" class="img-rounded" alt="delete button" title="delete button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "><?php endif; ?></a></td>
-				<td><?= $reports->description?></td>
-				<td><?= $reporter[$reports->reporterId]?></td>
+				<td><?= Html::encode($recipeTitle[$reports->recipeId])?><?php if ($recipeTitle[$reports->recipeId]!='Recipe deleted'):?><a href= "removerecipeb?recipeId=<?= $reports->recipeId ?>"><img src="../img/profileImg/banbutton.jpg" class="img-rounded" alt="delete button" title="delete button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "><?php endif; ?></a></td>
+				<td><?= Html::encode($reports->description)?></td>
+				<td><?= Html::encode($reporter[$reports->reporterId])?></td>
 				<td><?= $reports->time?></td>
 				<td> <a href= "resolvedcase?caseId=<?= $reports->caseNo ?>" ><img src="../img/profileImg/handlebutton.jpg" class="img-rounded" alt="handle button" title="handle button" width="20px" height="20px"  style="filter:alpha(opacity=50); opacity:.50; "></a></td>
 			</tr>

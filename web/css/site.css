@@ -6,6 +6,7 @@ body {
     /*font-family: 'Patrick Hand SC', cursive;*/
     font-family: "Comic Sans MS", "Coming Soon", cursive;
     letter-spacing:0.4px;
+    font-size: 16px;
 }
 
 
@@ -141,6 +142,9 @@ a.desc:after {
     #w1{
         display:none;
     }
+    .navbar-header .navbar-brand{
+        font-size:18px;
+    }
 }
  
 
@@ -164,7 +168,7 @@ a.desc:after {
 }
 
 .navbar-header .navbar-brand{
-    font-size: 31px;
+    
     text-shadow: 2px 2px 5px #41403e;
     color: #f5f5f5;
 }
@@ -185,7 +189,7 @@ a.desc:after {
         align-self:center;
         transition:all .5s ease;
         color:#41403E;
-        font-size:2rem;
+        font-size:1.3rem;
         letter-spacing:1px;
         outline:none;
         border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -226,7 +230,7 @@ a.desc:after {
     align-self:center;
     transition:all .5s ease;
     color:#41403E;
-    font-size:2rem;
+    font-size:1.3rem;
     letter-spacing:1px;
     outline:none;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -241,7 +245,7 @@ a.desc:after {
     align-self:center;
     transition:all .5s ease;
     color:#41403E;
-    font-size:2rem;
+    font-size:1.3rem;
     letter-spacing:1px;
 
 
@@ -270,12 +274,14 @@ a.desc:after {
     display: inline-block;
     float: left;
     padding-left: 0;
+    white-space: nowrap;
 }
 
 .forgetpassword{
     float: right;
     text-decoration: underline;
-    padding-right: 0;
+    margin-right: 15px;
+    white-space: nowrap;
 }
 
 /*file uploader*/
@@ -351,7 +357,7 @@ a.desc:after {
     align-self:center;
     transition:all .5s ease;
     color:#41403E;
-    font-size:2rem;
+    font-size:1.3rem;
     letter-spacing:1px;
     outline:none;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -366,7 +372,7 @@ a.desc:after {
     align-self:center;
     transition:all .5s ease;
     color:#41403E;
-    font-size:2rem;
+    font-size:1.3rem;
     letter-spacing:1px;
     outline:none;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -660,4 +666,19 @@ span.twitter-typeahead .tt-suggestion:last-child {
 
 .footer a {
     color: black;
+}
+
+
+
+@media(min-width:768px) {
+    .site-faq img{
+        width: 55%;
+    }
+    .site-faq p , .site-faq dl, .site-faq dd{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .navbar-brand{
+        font-size: 31px;
+    }
 }

@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'recipeId')->hiddenInput(['value' => $recipeId])->label(false) ?>
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <?= $form->field($model, 'recipePhoto')->fileInput() ?>
-                    <?= $form->field($model, 'recipeTitle')->textInput(['value' => $recipe->recipeTitle])->label('Recipe Title')  ?>
-                    <?= $form->field($model, 'description')->textarea(['rows' => '5','value' => $recipe->description ])->label('Description')  ?>
+                    <?= $form->field($model, 'recipeTitle')->textInput(['value' => Html::encode($recipe->recipeTitle)])->label('Recipe Title')  ?>
+                    <?= $form->field($model, 'description')->textarea(['rows' => '5','value' => Html::encode($recipe->description) ])->label('Description')  ?>
                     
                 </div>
             
@@ -40,10 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
             
                 <div class="col-xs-0 col-sm-8 col-md-8 col-lg-8">
 
-                    <?= $form->field($model, 'ingredient')->textarea(['rows' => '6','value' => $recipe->ingredient])->label('Ingredients')  ?>
+                    <?= $form->field($model, 'ingredient')->textarea(['rows' => '6','value' => Html::encode($recipe->ingredient)])->label('Ingredients')  ?>
 
-                    <?= $form->field($model, 'direction')->textarea(['rows' => '8','value' => $recipe->direction])->label('Directions')  ?>
-                    <?= $form->field($model, 'hashtags')->textInput(['data-role' => "tagsinput",'value' => $tagNames])->label('Hashtags')  ?>
+                    <?= $form->field($model, 'direction')->textarea(['rows' => '8','value' => Html::encode($recipe->direction)])->label('Directions')  ?>
+                    <?= $form->field($model, 'hashtags')->textInput(['data-role' => "tagsinput",'value' => Html::encode($tagNames)])->label('Hashtags')  ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'edit-recipe-button']) ?>
