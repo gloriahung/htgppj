@@ -235,7 +235,7 @@ AppAsset::register($this);
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       prefetch: {
         // url: 'data/countries.json',
-        url: '/web/site/search/',
+        url: '/web/site/search/?<?=time();?>',
         filter: function(list) {
           return $.map(list, function(name) {
             return { name: name }; });

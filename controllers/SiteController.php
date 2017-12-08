@@ -291,7 +291,7 @@ class SiteController extends Controller
 
     public function actionSearch()
     {
-        $result = Tag::findBySql('SELECT tagId,tag FROM tag LIMIT 0,10')->all();
+        $result = Tag::findBySql('SELECT tagId,tag FROM tag')->all();
         foreach ($result as $key => $value) {
             $user_arr[] = $value->tagId;
             $user_arr2[] = $value->tag;

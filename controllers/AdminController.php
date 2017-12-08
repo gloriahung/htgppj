@@ -339,6 +339,59 @@ class AdminController extends Controller
         } else {
             Yii::$app->db->createCommand()->update('user' , ['active' => 1],'id = "'.$userId.'"')->execute();
             Yii::$app->session->setFlash('user-banned successed'); 
+            return $this->actionIndex();
+        }
+    }
+    public function actionBanuserb()
+    {
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+        // get userId to be removed
+
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->update('user' , ['active' => 0],'id = "'.$userId.'"')->execute();
+            Yii::$app->session->setFlash('user-banned successed'); 
+            return $this->actionResolved();
+        }
+        // check if userId not exists throw error 
+            // 404, 'The requested Item could not be found.'
+
+        // else check if current user is not admin throw error 
+            // 403, You don't have permission to do this action
+
+        // else delete user
+
+        // return to admin/index with successful msg
+
+
+        // HINT: use 
+        // Yii::$app->session->setFlash(''); 
+        // to successful error msg
+
+        // HINT: use 
+        // throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        // to show error msg
+    }
+
+    public function actionUnbanuserb()
+    {
+        if(isset($_GET['userId'])&& !empty($_GET['userId'])){
+            $userId = htmlspecialchars($_GET['userId']);
+        } else{
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+        }
+        // get userId to be removed
+
+        if(!Yii::$app->user->identity->role=='admin'){
+            throw new \yii\web\HttpException(403, 'You do not have permission to do this action');;
+        } else {
+            Yii::$app->db->createCommand()->update('user' , ['active' => 1],'id = "'.$userId.'"')->execute();
+            Yii::$app->session->setFlash('user-banned successed'); 
             return $this->actionResolved();
         }
     }

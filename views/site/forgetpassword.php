@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="col-md-12">
-        please enter your email address, a new password will be sent to your mail box
+        
         </div>
 
 
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-xs-12">
 
-                    <p>Please enter your username or email address, a new password will be sent to your mail box</p>
+                    <p>Please enter your email address, a new password will be sent to your mail box</p>
 
                         <?php if (Yii::$app->session->hasFlash('emailDoesNotExistsError')): ?>
 

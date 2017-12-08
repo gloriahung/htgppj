@@ -169,7 +169,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php foreach ($comment as $value): ?>
         <div class="media-left">
-            <img src="../img/userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=Html::encode($commentUserArray[$value->userId]['username'])?>" title="<?=Html::encode($commentUserArray[$value->userId]['username'])?>">
+            <?php if($commentUserArray[$value->userId]['userIcon'] != null): ?>
+                    <img src="../img/userIcon/<?= $commentUserArray[$value->userId]['userIcon'] ?>" alt="<?=Html::encode($commentUserArray[$value->userId]['username'])?>" title="<?=Html::encode($commentUserArray[$value->userId]['username'])?>">
+                <?php else: ?>
+                    <img src="../img/userIcon/default.jpg" class="img-rounded" alt="<?=Html::encode($commentUserArray[$value->userId]['username'])?>" title="<?=Html::encode($commentUserArray[$value->userId]['username'])?>">
+                <?php endif; ?>
+            
         </div>
         
         <div class="media-body">
@@ -218,7 +223,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>   
 
             <div class="media-left">
-                <img src="../img/userIcon/<?= $myInfo->userIcon ?>" alt="<?=Html::encode(\Yii::$app->user->identity->username);?>" title="<?=Html::encode(\Yii::$app->user->identity->username);?>">
+                <?php if($myInfo->userIcon != null): ?>
+                    <img src="../img/userIcon/<?= $myInfo->userIcon ?>" alt="<?=Html::encode(\Yii::$app->user->identity->username);?>" title="<?=Html::encode(\Yii::$app->user->identity->username);?>">
+                <?php else: ?>
+                    <img src="../img/userIcon/default.jpg" class="img-rounded" alt="<?=Html::encode(\Yii::$app->user->identity->username);?>" title="<?=Html::encode(\Yii::$app->user->identity->username);?>">
+                <?php endif; ?>
+                
             </div>
             
             <div class="media-body">
